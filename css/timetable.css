@@ -1,0 +1,44 @@
+.clickline_module { 
+    display: block; 
+    width: 33.3%;
+    float:left;
+}
+.clickline_module img {
+    vertical-align: middle;
+    margin-right: 1em;
+}
+.clickline_module a.carrierC {
+    display: block;
+    border: 1px solid #595a5e;
+    padding: 0.6em;
+    text-decoration: none;
+    height:120px;
+}
+.clickline_module a:hover, .clickline_module a:focus, .clickline_module a:active, .clickline_selected {
+    border: 1px solid #488c40;
+    background-color: #e5e6e7;
+    color: #374853;
+    display: block;
+    padding: 0.6em;
+    text-decoration: none;
+    height:120px;
+}
+.clickline_module span.tax {
+    color: #374853;
+    font-size: 11px;
+    font-weight: normal;	
+}
+.clickline_bold { 
+    font-weight: bold;
+}
+.clickline_info {
+    float: none;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.clickline_info_to {
+    margin-left: 40px;
+}
+.clickline_carriers {
+    display: table;
+}
