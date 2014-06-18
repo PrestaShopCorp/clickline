@@ -102,7 +102,7 @@
                     <dt><label>{l s='Default carrier' mod='clickline'}: </label></dt>
                     <dd>
                         <select name="clickline_carrier_def" id="clickline_carrier_def" style="width:250px">
-                            <option value="">{l s='None' mod='clickline'}</option>
+                            <option value="0">{l s='None' mod='clickline'}</option>
                             {foreach from=$carrier_list item=carrier}
                                 <option value="{$carrier->carrier_id|escape:'htmlall':'UTF-8'}" {if isset($fieldsList['CLICKLINE_CARRIER_DEF'])} {if $fieldsList['CLICKLINE_CARRIER_DEF'] eq $carrier->carrier_id} selected=selected {/if}{/if}>{$carrier->carrier|escape:'htmlall':'UTF-8'}</option>
                             {/foreach}

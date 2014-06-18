@@ -29,7 +29,7 @@
         {if isset($errors[0])}
         <span style="color:red">{$errors[0]|escape:'htmlall':'UTF-8'}</span>	
     {/if}	
-    <form action="{$request_uri|escape:'none':'UTF-8'}" method="post">
+    <form action="{$request_uri|escape:'none':'UTF-8'}" method="post" style="display:none;" id="clickline-order-form">
         <input type="hidden" name="id_cart" id="id_cart" value="{$id_cart|escape:'htmlall':'UTF-8'}" />
         <input type="hidden" name="id_shipping_carrier" id="id_shipping_carrier" value="{if isset($clorder)}{$clorder['id_shipping_carrier']|escape:'htmlall':'UTF-8'}{else}{$clcart['id_shipping_carrier']|escape:'htmlall':'UTF-8'}{/if}" />
         <input type="hidden" name="id_shipping_service" id="id_shipping_service" value="{if isset($clorder)}{$clorder['id_shipping_service']|escape:'htmlall':'UTF-8'}{else}{$clcart['id_shipping_service']|escape:'htmlall':'UTF-8'}{/if}" />
@@ -258,4 +258,5 @@
     <div>{l s='Required fields' mod='clickline'}<span style="color:red">*</span></div>
 {/if}
 </form>
+<button class="button" onclick="$('#clickline-order-form').slideDown();$(this).slideUp();">{l s='Put order' mod='clickline'}</button>
 </fieldset>
