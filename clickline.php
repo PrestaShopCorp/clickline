@@ -1037,7 +1037,7 @@ class ClickLine extends CarrierModule {
 
         foreach (array_slice($array, 0) as $key => $value) {
             if ($value instanceof SimpleXMLElement)
-                $array[$key] = empty($value) ? null : toArray($value);
+                $array[$key] = empty($value) ? null : $this->toArray($value);
         }
         return $array;
     }
