@@ -551,7 +551,7 @@ class ClickLine extends CarrierModule {
             Configuration::updateValue('CLICKLINE_ACCOUNT', Tools::getvalue('clickline_account'));
             Configuration::updateValue('CLICKLINE_PASSWORD', Tools::getvalue('clickline_password'));
             Configuration::updateValue('CLICKLINE_CP_FROM', Tools::getvalue('clickline_cp_from'));
-            $country_from = strtolower(trim(Tools::getvalue('clickline_country_from')));
+            $country_from = Tools::strtolower(trim(Tools::getvalue('clickline_country_from')));
             if ($country_from == 'españa')
                 $country_from = 'es';
             Configuration::updateValue('CLICKLINE_COUNTRY_FROM', $country_from);
