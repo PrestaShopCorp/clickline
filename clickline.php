@@ -296,7 +296,14 @@ class ClickLine extends CarrierModule
 	 */
 	private function displayForm()
 	{
-		$smarty = $this->context->smarty;
+		$this->context->smarty->assign(array(
+			'logo_src' => $this->_path,
+			'apply_discount' => Configuration::get('CLICKLINE_APPLY_DISCOUNT'),
+			'ps_16' => version_compare(_PS_VERSION_, '1.6', '>='),
+			'main_form' => $this->renderForm()
+		));
+		$this->html .= ($this->display(__FILE__, '/views/templates/admin/clickline_configuration.tpl'));
+		/*$smarty = $this->context->smarty;
 		$carrier_list = null;
 
 
@@ -325,7 +332,7 @@ class ClickLine extends CarrierModule
 			'apply_discount' => Configuration::get('CLICKLINE_APPLY_DISCOUNT'),
 			'ps_16' => version_compare(_PS_VERSION_, '1.6', '>=')
 		));
-		$this->html .= ($this->display(__FILE__, '/views/templates/admin/clickline_configuration.tpl'));
+		$this->html .= ($this->display(__FILE__, '/views/templates/admin/clickline_configuration.tpl'));*/
 	}
 
 	public function hookupdateCarrier($params)
@@ -1276,6 +1283,256 @@ class ClickLine extends CarrierModule
 
 			return $this->display(__FILE__, '/views/templates/hook/hook_header.tpl');
 		}
+	}
+        
+	private function renderForm()
+	{
+		//Get all config values
+		$config_values = Array(
+			'clickline_account' => (isset($this->fields_list['CLICKLINE_ACCOUNT']) ? $this->fields_list['CLICKLINE_ACCOUNT'] : ''),
+			'clickline_password' => (isset($this->fields_list['CLICKLINE_PASSWORD']) ? $this->fields_list['CLICKLINE_PASSWORD'] : ''),
+			'clickline_cp_from' => (isset($this->fields_list['CLICKLINE_CP_FROM']) ? $this->fields_list['CLICKLINE_CP_FROM'] : ''),
+			'clickline_country_from' => (isset($this->fields_list['CLICKLINE_COUNTRY_FROM']) ? $this->fields_list['CLICKLINE_COUNTRY_FROM'] : ''),
+			'clickline_carrier_def' => (isset($this->fields_list['CLICKLINE_CARRIER_DEF']) ? $this->fields_list['CLICKLINE_CARRIER_DEF'] : 0),
+			'apply_discount' => (int)Configuration::get('CLICKLINE_APPLY_DISCOUNT'),
+			'shop_name' => (isset($this->fields_list['CLICKLINE_SHOP_NAME']) ? $this->fields_list['CLICKLINE_SHOP_NAME'] : ''),
+			'first_name' => (isset($this->fields_list['CLICKLINE_FIRST_NAME']) ? $this->fields_list['CLICKLINE_FIRST_NAME'] : ''),
+			'last_name' => (isset($this->fields_list['CLICKLINE_LAST_NAME']) ? $this->fields_list['CLICKLINE_LAST_NAME'] : ''),
+			'last_name_2' => (isset($this->fields_list['CLICKLINE_LAST_NAME_2']) ? $this->fields_list['CLICKLINE_LAST_NAME_2'] : ''),
+			'street' => (isset($this->fields_list['CLICKLINE_STREET']) ? $this->fields_list['CLICKLINE_STREET'] : ''),
+			'road_number' => (isset($this->fields_list['CLICKLINE_ROAD_NUMBER']) ? $this->fields_list['CLICKLINE_ROAD_NUMBER'] : ''),
+			'portal' => (isset($this->fields_list['CLICKLINE_PORTAL']) ? $this->fields_list['CLICKLINE_PORTAL'] : ''),
+			'floor' => (isset($this->fields_list['CLICKLINE_FLOOR']) ? $this->fields_list['CLICKLINE_FLOOR'] : ''),
+			'door' => (isset($this->fields_list['CLICKLINE_DOOR']) ? $this->fields_list['CLICKLINE_DOOR'] : ''),
+			'postcode' => (isset($this->fields_list['CLICKLINE_POSTCODE']) ? $this->fields_list['CLICKLINE_POSTCODE'] : ''),
+			'city' => (isset($this->fields_list['CLICKLINE_CITY']) ? $this->fields_list['CLICKLINE_CITY'] : ''),
+			'country' => (isset($this->fields_list['CLICKLINE_COUNTRY']) ? $this->fields_list['CLICKLINE_COUNTRY'] : 0),
+			'telephone' => (isset($this->fields_list['CLICKLINE_TELEPHONE']) ? $this->fields_list['CLICKLINE_TELEPHONE'] : ''),
+			'fax' => (isset($this->fields_list['CLICKLINE_FAX']) ? $this->fields_list['CLICKLINE_FAX'] : ''),
+			'email' => (isset($this->fields_list['CLICKLINE_EMAIL']) ? $this->fields_list['CLICKLINE_EMAIL'] : ''),
+		);
+		//Prepare the carriers list
+		$carrier_list = array();
+		$carrier_list[] = array('carrier_id' => 0, 'carrier' => $this->l('None'));
+		if (isset($this->fields_list['CLICKLINE_ACCOUNT']))
+		{
+		// Get carrier list from WS
+		// Create ClickLine_api Object
+			$clickline = new ClickLineApi();
+
+			// Open connection and call WS
+			$carrier_list_to_add = $clickline->getCarriersList();
+			$carrier_list = array_merge($carrier_list, $carrier_list_to_add);
+		}
+
+		// Get countries
+		$country_list = array();
+		$country_list[] = array('id_country' => '0', 'name' => $this->l('Choose your country'));
+		$country_list = array_merge($country_list, Country::getCountries($this->_lang));
+
+
+		//Lets go, gen the form
+		//<editor-fold defaultstate="collapsed" desc="Form's template">
+
+		$fields_form = array();
+		$fields_form[] = array('form' => array(
+			'legend' => array(
+				'title' => $this->l('ClickLine Module Configuration'),
+				'image' => $this->_path.'logo.png'
+			),
+			'input' => array(
+				array(
+					'type' => 'text',
+					'name' => 'clickline_account',
+					'required' => true,
+					'label' => $this->l('User'),
+					'desc' => $this->l('User of Clickline account'),
+					'size' => 32
+				),
+				array(
+					'type' => 'password',
+					'name' => 'clickline_password',
+					'required' => true,
+					'label' => $this->l('Password'),
+					'desc' => $this->l('Password of Clickline account'),
+					'size' => 32
+				),
+				array(
+					'type' => 'text',
+					'name' => 'clickline_cp_from',
+					'required' => true,
+					'label' => $this->l('CP From'),
+					'desc' => $this->l('ZIP code where the order is sent'),
+					'size' => 32
+				),
+				array(
+					'type' => 'text',
+					'required' => true,
+					'label' => $this->l('Country From'),
+					'desc' => $this->l('Country code where the order is sent, for example: ES for Spain'),
+					'size' => 32
+				),
+				array(
+					'type' => 'select',
+					'name' => 'clickline_carrier_def',
+					'required' => true,
+					'label' => $this->l('Default carrier'),
+					'desc' => $this->l('Carrier that will be selected by default at Front Office'),
+					'options' => array(
+						'query' => $carrier_list,
+						'id' => 'carrier_id',
+						'name' => 'carrier'
+					)
+				),
+				array(
+					'type' => 'radio',
+					'name' => 'apply_discount',
+					'required' => true,
+					'class' => 't',
+					'is_bool' => true,
+					'label' => $this->l('Send measures'),
+					'desc' => $this->l('Send measures from the Front Office of the store (in the product must indicate their size and weight)'),
+					'values' => array(
+				array(
+					'id' => 'active_on',
+					'value' => 1,
+					'label' => $this->l('Enabled')
+				),
+				array(
+					'id' => 'active_off',
+					'value' => 0,
+					'label' => $this->l('Disabled')
+				)
+			)
+		)),
+		'submit' => array(
+			'name' => 'submitSave',
+			'title' => $this->l('Save'),
+			'class' => 'button'
+			)
+		)
+	);
+
+	$fields_form[] = array('form' => array(
+		'legend' => array(
+		    'title' => $this->l('Shop Information'),
+		    'image' => $this->_path.'logo.png'
+		),
+		'input' => array(
+		    array(
+			'type' => 'text',
+			'name' => 'shop_name',
+			'label' => $this->l('Shop name'),
+			'size' => 45
+		    ),
+		    array(
+			'type' => 'text',
+			'name' => 'first_name',
+			'label' => $this->l('First Name'),
+			'size' => 45
+		    ),
+		    array(
+			'type' => 'text',
+			'name' => 'last_name',
+			'label' => $this->l('Last Name'),
+			'size' => 45
+		    ),
+		    array(
+			'type' => 'text',
+			'name' => 'last_name_2',
+			'label' => $this->l('Last Name 2'),
+			'size' => 45
+		    ),
+		    array(
+			'type' => 'text',
+			'name' => 'street',
+			'label' => $this->l('Street'),
+			'size' => 45
+		    ),
+		    array(
+			'type' => 'text',
+			'name' => 'road_number',
+			'label' => $this->l('Road number'),
+			'size' => 45
+		    ),
+		    array(
+			'type' => 'text',
+			'name' => 'portal',
+			'label' => $this->l('Portal'),
+			'size' => 45
+		    ),
+		    array(
+			'type' => 'text',
+			'name' => 'floor',
+			'label' => $this->l('Floor'),
+			'size' => 45
+		    ),
+		    array(
+			'type' => 'text',
+			'name' => 'door',
+			'label' => $this->l('Door'),
+			'size' => 45
+		    ),
+		    array(
+			'type' => 'text',
+			'name' => 'postcode',
+			'label' => $this->l('Postcode'),
+			'size' => 45
+		    ),
+		    array(
+			'type' => 'text',
+			'name' => 'city',
+			'label' => $this->l('City'),
+			'size' => 45
+		    ),
+		    array(
+			'type' => 'select',
+			'name' => 'country',
+			'label' => $this->l('Country'),
+			'options' => array(
+			    'query' => $country_list,
+			    'id' => 'id_country',
+			    'name' => 'name'
+			)
+		    ),
+		    array(
+			'type' => 'text',
+			'name' => 'telephone',
+			'label' => $this->l('Telephone'),
+			'size' => 45
+		    ),
+		    array(
+			'type' => 'text',
+			'name' => 'fax',
+			'label' => $this->l('Fax'),
+			'size' => 45
+		    ),
+		    array(
+			'type' => 'text',
+			'name' => 'email',
+			'label' => $this->l('Email'),
+			'size' => 45
+		    )
+		)
+		,
+		'submit' => array(
+		    'name' => 'submitSave',
+		    'title' => $this->l('Save'),
+		    'class' => 'button'
+		)
+	));
+//</editor-fold>
+
+		$helper = new HelperForm();
+		$helper->module = $this;
+		$helper->token = Tools::getAdminTokenLite('AdminModules'); //Security Token
+		$helper->currentIndex = AdminController::$currentIndex.'&configure='.$this->name; //Current url
+		$helper->fields_value = $config_values;
+		$helper->show_toolbar = false; //Hide the toolbar
+		$helper->default_form_language = (int)Configuration::get('PS_LANG_DEFAULT'); //And set the default language
+		$options = $helper->generateForm($fields_form);
+
+		return $options;
 	}
 
 }

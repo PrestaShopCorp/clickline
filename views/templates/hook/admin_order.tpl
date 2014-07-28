@@ -25,7 +25,7 @@
 </br>
 
 <fieldset style="{if $ps_version eq 'true'}width:400px{/if}">
-    <legend><img src="{$path|escape:'htmlall':'UTF-8'}logo.gif" alt="" />{l s='Clickline Information' mod='clickline'}</legend>
+    <legend><img src="{$path|escape:'htmlall':'UTF-8'}logo.png" alt="" />{l s='Clickline Information' mod='clickline'}</legend>
         {if isset($errors[0])}
         <span style="color:red">{$errors[0]|escape:'htmlall':'UTF-8'}</span>	
     {/if}	
