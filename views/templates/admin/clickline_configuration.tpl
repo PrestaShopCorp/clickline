@@ -56,7 +56,7 @@
                 <h3>{l s='Settings' mod='clickline'}</h3>
             </div>
         </div>
-        <div class="clickline-menu-option col-xs-3" id="documentation-option">
+        <!--<div class="clickline-menu-option col-xs-3" id="documentation-option">
             <a href="#">
                 <img class="img-responsive" src="{$logo_src|escape:'htmlall':'UTF-8'}img/settings_options/documentation.png" alt="{l s='Documentation' mod='clickline'}"/>
                 <div>
@@ -71,7 +71,7 @@
                     <h3>{l s='Support' mod='clickline'}</h3>
                 </div>
             </a>
-        </div>
+        </div>-->
     </div>
     <div class="clear"></div>
     <div id="clickline-configuration">
