@@ -1338,7 +1338,7 @@ class ClickLine extends CarrierModule
 		$fields_form[] = array('form' => array(
 			'legend' => array(
 				'title' => $this->l('ClickLine Module Configuration'),
-				'image' => $this->_path.'logo.png'
+				'image' => $this->_path.'img/logo.png'
 			),
 			'input' => array(
 				array(
@@ -1416,7 +1416,7 @@ class ClickLine extends CarrierModule
 	$fields_form[] = array('form' => array(
 		'legend' => array(
 		    'title' => $this->l('Shop Information'),
-		    'image' => $this->_path.'logo.png'
+		    'image' => $this->_path.'img/logo.png'
 		),
 		'input' => array(
 		    array(
