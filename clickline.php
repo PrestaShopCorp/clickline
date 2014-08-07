@@ -24,7 +24,6 @@
  *  @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  *  International Registered Trademark & Property of PrestaShop SA
  */
-
 if (!defined('_PS_VERSION_'))
 	exit;
 
@@ -819,10 +818,12 @@ class ClickLine extends CarrierModule
 					throw new Exception($this->l('Please enter data for mandatory fields'));
 				}
 // Update configuration vars
-				Configuration::updateValue('CLICKLINE_URL', (empty(trim(Tools::getvalue('clickline_url'))) ? 'www.clickline.com' : trim(Tools::getvalue('clickline_url'))));
+				$clicklineURL = trim(Tools::getvalue('clickline_url'));
+				Configuration::updateValue('CLICKLINE_URL', (empty($clicklineURL) ? 'www.clickline.com' : $clicklineURL));
 				Configuration::updateValue('CLICKLINE_ACCOUNT', $account);
-				if (!empty(Tools::getvalue('clickline_password')))
-					Configuration::updateValue('CLICKLINE_PASSWORD', Tools::getvalue('clickline_password'));
+				$clicklinePassword = Tools::getvalue('clickline_password');
+				if (!empty($clicklinePassword))
+					Configuration::updateValue('CLICKLINE_PASSWORD', $clicklinePassword);
 				Configuration::updateValue('CLICKLINE_CP_FROM', $cp_from);
 				if ($country_from == 'españa' || $country_from == 'España')
 					$country_from = 'es';
