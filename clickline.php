@@ -54,15 +54,11 @@ class ClickLine extends CarrierModule
 	{
 		$this->name = 'clickline';
 		$this->tab = 'shipping_logistics';
-		$this->version = '1.3.3';
+		$this->version = '1.3.4';
 		$this->author = 'alabazweb.com';
 		$this->bootstrap = true;
 
 		parent::__construct();
-
-		/* Backward compatibility */
-		if (version_compare(_PS_VERSION_, '1.5', '<'))
-			require(_PS_MODULE_DIR_.$this->name.'/backward_compatibility/backward.php');
 
 		$this->displayName = $this->l('ClickLine');
 		$this->description = $this->l('Offer your customers, different delivery methods');
@@ -83,28 +79,28 @@ class ClickLine extends CarrierModule
 	{
 // Loading Fields List
 		$fields_to_load = array(
-		    'CLICKLINE_ACCOUNT',
-		    'CLICKLINE_PASSWORD',
-		    'CLICKLINE_URL',
-		    'CLICKLINE_CP_FROM',
-		    'CLICKLINE_COUNTRY_FROM',
-		    'CLICKLINE_CARRIER_DEF',
-		    'CLICKLINE_SHOP_NAME',
-		    'CLICKLINE_FIRST_NAME',
-		    'CLICKLINE_LAST_NAME',
-		    'CLICKLINE_LAST_NAME_2',
-		    'CLICKLINE_STREET',
-		    'CLICKLINE_ROAD_NUMBER',
-		    'CLICKLINE_PORTAL',
-		    'CLICKLINE_FLOOR',
-		    'CLICKLINE_DOOR',
-		    'CLICKLINE_POSTCODE',
-		    'CLICKLINE_CITY',
-		    'CLICKLINE_COUNTRY',
-		    'CLICKLINE_TELEPHONE',
-		    'CLICKLINE_FAX',
-		    'CLICKLINE_EMAIL',
-		    'CLICKLINE_APPLY_DISCOUNT'
+			'CLICKLINE_ACCOUNT',
+			'CLICKLINE_PASSWORD',
+			'CLICKLINE_URL',
+			'CLICKLINE_CP_FROM',
+			'CLICKLINE_COUNTRY_FROM',
+			'CLICKLINE_CARRIER_DEF',
+			'CLICKLINE_SHOP_NAME',
+			'CLICKLINE_FIRST_NAME',
+			'CLICKLINE_LAST_NAME',
+			'CLICKLINE_LAST_NAME_2',
+			'CLICKLINE_STREET',
+			'CLICKLINE_ROAD_NUMBER',
+			'CLICKLINE_PORTAL',
+			'CLICKLINE_FLOOR',
+			'CLICKLINE_DOOR',
+			'CLICKLINE_POSTCODE',
+			'CLICKLINE_CITY',
+			'CLICKLINE_COUNTRY',
+			'CLICKLINE_TELEPHONE',
+			'CLICKLINE_FAX',
+			'CLICKLINE_EMAIL',
+			'CLICKLINE_APPLY_DISCOUNT'
 		);
 
 		$this->fields_list = Configuration::getMultiple($fields_to_load);
@@ -118,17 +114,17 @@ class ClickLine extends CarrierModule
 	{
 // Register the Clickline carrier
 		$carrier_config = array('name' => 'Clickline',
-		    'id_tax_rules_group' => 0,
-		    'active' => true,
-		    'deleted' => 0,
-		    'shipping_handling' => false,
-		    'range_behavior' => 0,
-		    'delay' => array(Language::getIsoById(Configuration::get('PS_LANG_DEFAULT')) => '24/48 horas'),
-		    'id_zone' => 1,
-		    'is_module' => true,
-		    'shipping_external' => true,
-		    'external_module_name' => $this->name,
-		    'need_range' => true
+			'id_tax_rules_group' => 0,
+			'active' => true,
+			'deleted' => 0,
+			'shipping_handling' => false,
+			'range_behavior' => 0,
+			'delay' => array(Language::getIsoById(Configuration::get('PS_LANG_DEFAULT')) => '24/48 horas'),
+			'id_zone' => 1,
+			'is_module' => true,
+			'shipping_external' => true,
+			'external_module_name' => $this->name,
+			'need_range' => true
 		);
 
 		$id_carrier = $this->installExternalCarrier($carrier_config);
@@ -136,18 +132,18 @@ class ClickLine extends CarrierModule
 
 // Install Module
 		if (!parent::install() || !CLCartClass::installDB() ||
-			!$this->registerHook('updateCarrier') ||
-			!$this->registerHook('adminOrder') ||
-			!$this->registerHook('extraCarrier') ||
-			!$this->registerHook('backOfficeHeader') ||
-			!$this->registerHook('header') ||
-			!Configuration::updateValue('CLICKLINE_ACCOUNT', '') ||
-			!Configuration::updateValue('CLICKLINE_PASSWORD', '') ||
-			!Configuration::updateValue('CLICKLINE_URL', 'www.clickline.com') ||
-			!Configuration::updateValue('CLICKLINE_CP_FROM', '') ||
-			!Configuration::updateValue('CLICKLINE_COUNTRY_FROM', '') ||
-			!Configuration::updateValue('CLICKLINE_CARRIER_DEF', '') ||
-			!Configuration::updateValue('CLICKLINE_APPLY_DISCOUNT', 0))
+				!$this->registerHook('updateCarrier') ||
+				!$this->registerHook('adminOrder') ||
+				!$this->registerHook('extraCarrier') ||
+				!$this->registerHook('backOfficeHeader') ||
+				!$this->registerHook('header') ||
+				!Configuration::updateValue('CLICKLINE_ACCOUNT', '') ||
+				!Configuration::updateValue('CLICKLINE_PASSWORD', '') ||
+				!Configuration::updateValue('CLICKLINE_URL', 'www.clickline.com') ||
+				!Configuration::updateValue('CLICKLINE_CP_FROM', '') ||
+				!Configuration::updateValue('CLICKLINE_COUNTRY_FROM', '') ||
+				!Configuration::updateValue('CLICKLINE_CARRIER_DEF', '') ||
+				!Configuration::updateValue('CLICKLINE_APPLY_DISCOUNT', 0))
 			return false;
 		return true;
 	}
@@ -270,10 +266,10 @@ class ClickLine extends CarrierModule
 
 // Uninstall Module
 		if (!parent::uninstall() ||
-			!$this->unregisterHook('updateCarrier') ||
-			!$this->unregisterHook('adminOrder') ||
-			!$this->unregisterHook('extraCarrier') ||
-			!$this->unregisterHook('header'))
+				!$this->unregisterHook('updateCarrier') ||
+				!$this->unregisterHook('adminOrder') ||
+				!$this->unregisterHook('extraCarrier') ||
+				!$this->unregisterHook('header'))
 			return false;
 
 		return true;
@@ -294,27 +290,27 @@ class ClickLine extends CarrierModule
 	{
 //Get all config values
 		$config_values = Array(
-		    'clickline_account' => (isset($this->fields_list['CLICKLINE_ACCOUNT']) ? $this->fields_list['CLICKLINE_ACCOUNT'] : ''),
-		    'clickline_password' => (isset($this->fields_list['CLICKLINE_PASSWORD']) ? $this->fields_list['CLICKLINE_PASSWORD'] : ''),
-		    'clickline_cp_from' => (isset($this->fields_list['CLICKLINE_CP_FROM']) ? $this->fields_list['CLICKLINE_CP_FROM'] : ''),
-		    'clickline_country_from' => (isset($this->fields_list['CLICKLINE_COUNTRY_FROM']) ? $this->fields_list['CLICKLINE_COUNTRY_FROM'] : ''),
-		    'clickline_carrier_def' => (isset($this->fields_list['CLICKLINE_CARRIER_DEF']) ? $this->fields_list['CLICKLINE_CARRIER_DEF'] : 0),
-		    'apply_discount' => (int) Configuration::get('CLICKLINE_APPLY_DISCOUNT'),
-		    'shop_name' => (isset($this->fields_list['CLICKLINE_SHOP_NAME']) ? $this->fields_list['CLICKLINE_SHOP_NAME'] : ''),
-		    'first_name' => (isset($this->fields_list['CLICKLINE_FIRST_NAME']) ? $this->fields_list['CLICKLINE_FIRST_NAME'] : ''),
-		    'last_name' => (isset($this->fields_list['CLICKLINE_LAST_NAME']) ? $this->fields_list['CLICKLINE_LAST_NAME'] : ''),
-		    'last_name_2' => (isset($this->fields_list['CLICKLINE_LAST_NAME_2']) ? $this->fields_list['CLICKLINE_LAST_NAME_2'] : ''),
-		    'street' => (isset($this->fields_list['CLICKLINE_STREET']) ? $this->fields_list['CLICKLINE_STREET'] : ''),
-		    'road_number' => (isset($this->fields_list['CLICKLINE_ROAD_NUMBER']) ? $this->fields_list['CLICKLINE_ROAD_NUMBER'] : ''),
-		    'portal' => (isset($this->fields_list['CLICKLINE_PORTAL']) ? $this->fields_list['CLICKLINE_PORTAL'] : ''),
-		    'floor' => (isset($this->fields_list['CLICKLINE_FLOOR']) ? $this->fields_list['CLICKLINE_FLOOR'] : ''),
-		    'door' => (isset($this->fields_list['CLICKLINE_DOOR']) ? $this->fields_list['CLICKLINE_DOOR'] : ''),
-		    'postcode' => (isset($this->fields_list['CLICKLINE_POSTCODE']) ? $this->fields_list['CLICKLINE_POSTCODE'] : ''),
-		    'city' => (isset($this->fields_list['CLICKLINE_CITY']) ? $this->fields_list['CLICKLINE_CITY'] : ''),
-		    'country' => (isset($this->fields_list['CLICKLINE_COUNTRY']) ? $this->fields_list['CLICKLINE_COUNTRY'] : 0),
-		    'telephone' => (isset($this->fields_list['CLICKLINE_TELEPHONE']) ? $this->fields_list['CLICKLINE_TELEPHONE'] : ''),
-		    'fax' => (isset($this->fields_list['CLICKLINE_FAX']) ? $this->fields_list['CLICKLINE_FAX'] : ''),
-		    'email' => (isset($this->fields_list['CLICKLINE_EMAIL']) ? $this->fields_list['CLICKLINE_EMAIL'] : ''),
+			'clickline_account' => (isset($this->fields_list['CLICKLINE_ACCOUNT']) ? $this->fields_list['CLICKLINE_ACCOUNT'] : ''),
+			'clickline_password' => (isset($this->fields_list['CLICKLINE_PASSWORD']) ? $this->fields_list['CLICKLINE_PASSWORD'] : ''),
+			'clickline_cp_from' => (isset($this->fields_list['CLICKLINE_CP_FROM']) ? $this->fields_list['CLICKLINE_CP_FROM'] : ''),
+			'clickline_country_from' => (isset($this->fields_list['CLICKLINE_COUNTRY_FROM']) ? $this->fields_list['CLICKLINE_COUNTRY_FROM'] : ''),
+			'clickline_carrier_def' => (isset($this->fields_list['CLICKLINE_CARRIER_DEF']) ? $this->fields_list['CLICKLINE_CARRIER_DEF'] : 0),
+			'apply_discount' => (int) Configuration::get('CLICKLINE_APPLY_DISCOUNT'),
+			'shop_name' => (isset($this->fields_list['CLICKLINE_SHOP_NAME']) ? $this->fields_list['CLICKLINE_SHOP_NAME'] : ''),
+			'first_name' => (isset($this->fields_list['CLICKLINE_FIRST_NAME']) ? $this->fields_list['CLICKLINE_FIRST_NAME'] : ''),
+			'last_name' => (isset($this->fields_list['CLICKLINE_LAST_NAME']) ? $this->fields_list['CLICKLINE_LAST_NAME'] : ''),
+			'last_name_2' => (isset($this->fields_list['CLICKLINE_LAST_NAME_2']) ? $this->fields_list['CLICKLINE_LAST_NAME_2'] : ''),
+			'street' => (isset($this->fields_list['CLICKLINE_STREET']) ? $this->fields_list['CLICKLINE_STREET'] : ''),
+			'road_number' => (isset($this->fields_list['CLICKLINE_ROAD_NUMBER']) ? $this->fields_list['CLICKLINE_ROAD_NUMBER'] : ''),
+			'portal' => (isset($this->fields_list['CLICKLINE_PORTAL']) ? $this->fields_list['CLICKLINE_PORTAL'] : ''),
+			'floor' => (isset($this->fields_list['CLICKLINE_FLOOR']) ? $this->fields_list['CLICKLINE_FLOOR'] : ''),
+			'door' => (isset($this->fields_list['CLICKLINE_DOOR']) ? $this->fields_list['CLICKLINE_DOOR'] : ''),
+			'postcode' => (isset($this->fields_list['CLICKLINE_POSTCODE']) ? $this->fields_list['CLICKLINE_POSTCODE'] : ''),
+			'city' => (isset($this->fields_list['CLICKLINE_CITY']) ? $this->fields_list['CLICKLINE_CITY'] : ''),
+			'country' => (isset($this->fields_list['CLICKLINE_COUNTRY']) ? $this->fields_list['CLICKLINE_COUNTRY'] : 0),
+			'telephone' => (isset($this->fields_list['CLICKLINE_TELEPHONE']) ? $this->fields_list['CLICKLINE_TELEPHONE'] : ''),
+			'fax' => (isset($this->fields_list['CLICKLINE_FAX']) ? $this->fields_list['CLICKLINE_FAX'] : ''),
+			'email' => (isset($this->fields_list['CLICKLINE_EMAIL']) ? $this->fields_list['CLICKLINE_EMAIL'] : ''),
 		);
 //Prepare the carriers list
 		$carrier_list = array();
@@ -341,192 +337,192 @@ class ClickLine extends CarrierModule
 
 		$fields_form = array();
 		$fields_form[] = array('form' => array(
-			'legend' => array(
-			    'title' => $this->l('ClickLine Module Configuration'),
-			    'image' => $this->_path.'logo.gif'
-			),
-			'input' => array(
-			    array(
-				'type' => 'text',
-				'name' => 'clickline_account',
-				'required' => true,
-				'label' => $this->l('User'),
-				'desc' => $this->l('User of Clickline account'),
-				'size' => 32
-			    ),
-			    array(
-				'type' => 'password',
-				'name' => 'clickline_password',
-				'required' => true,
-				'label' => $this->l('Password'),
-				'desc' => $this->l('Password of Clickline account'),
-				'size' => 32
-			    ),
-			    array(
-				'type' => 'text',
-				'name' => 'clickline_cp_from',
-				'required' => true,
-				'label' => $this->l('CP From'),
-				'desc' => $this->l('ZIP code where the order is sent'),
-				'size' => 32
-			    ),
-			    array(
-				'type' => 'text',
-				'name' => 'clickline_country_from',
-				'required' => true,
-				'label' => $this->l('Country From'),
-				'desc' => $this->l('Country code where the order is sent, for example: ES for Spain'),
-				'size' => 32
-			    ),
-			    array(
-				'type' => 'select',
-				'name' => 'clickline_carrier_def',
-				'required' => true,
-				'label' => $this->l('Default carrier'),
-				'desc' => $this->l('Carrier that will be selected by default at Front Office'),
-				'options' => array(
-				    'query' => $carrier_list,
-				    'id' => 'carrier_id',
-				    'name' => 'carrier'
+				'legend' => array(
+					'title' => $this->l('ClickLine Module Configuration'),
+					'image' => $this->_path.'logo.gif'
+				),
+				'input' => array(
+					array(
+						'type' => 'text',
+						'name' => 'clickline_account',
+						'required' => true,
+						'label' => $this->l('User'),
+						'desc' => $this->l('User of Clickline account'),
+						'size' => 32
+					),
+					array(
+						'type' => 'password',
+						'name' => 'clickline_password',
+						'required' => true,
+						'label' => $this->l('Password'),
+						'desc' => $this->l('Password of Clickline account'),
+						'size' => 32
+					),
+					array(
+						'type' => 'text',
+						'name' => 'clickline_cp_from',
+						'required' => true,
+						'label' => $this->l('CP From'),
+						'desc' => $this->l('ZIP code where the order is sent'),
+						'size' => 32
+					),
+					array(
+						'type' => 'text',
+						'name' => 'clickline_country_from',
+						'required' => true,
+						'label' => $this->l('Country From'),
+						'desc' => $this->l('Country code where the order is sent, for example: ES for Spain'),
+						'size' => 32
+					),
+					array(
+						'type' => 'select',
+						'name' => 'clickline_carrier_def',
+						'required' => true,
+						'label' => $this->l('Default carrier'),
+						'desc' => $this->l('Carrier that will be selected by default at Front Office'),
+						'options' => array(
+							'query' => $carrier_list,
+							'id' => 'carrier_id',
+							'name' => 'carrier'
+						)
+					),
+					array(
+						'type' => 'radio',
+						'name' => 'apply_discount',
+						'required' => true,
+						'class' => 't',
+						'is_bool' => true,
+						'label' => $this->l('Send measures'),
+						'desc' => $this->l('Send measures from the Front Office of the store (in the product must indicate their size and weight)'),
+						'values' => array(
+							array(
+								'id' => 'active_on',
+								'value' => 1,
+								'label' => $this->l('Enabled')
+							),
+							array(
+								'id' => 'active_off',
+								'value' => 0,
+								'label' => $this->l('Disabled')
+							)
+						)
+					)
 				)
-			    ),
-			    array(
-				'type' => 'radio',
-				'name' => 'apply_discount',
-				'required' => true,
-				'class' => 't',
-				'is_bool' => true,
-				'label' => $this->l('Send measures'),
-				'desc' => $this->l('Send measures from the Front Office of the store (in the product must indicate their size and weight)'),
-				'values' => array(
-				    array(
-					'id' => 'active_on',
-					'value' => 1,
-					'label' => $this->l('Enabled')
-				    ),
-				    array(
-					'id' => 'active_off',
-					'value' => 0,
-					'label' => $this->l('Disabled')
-				    )
+				,
+				'submit' => array(
+					'name' => 'submitSave',
+					'title' => $this->l('Save'),
+					'class' => 'button'
 				)
-			    )
-			)
-			,
-			'submit' => array(
-			    'name' => 'submitSave',
-			    'title' => $this->l('Save'),
-			    'class' => 'button'
-			)
 		));
 
 		$fields_form[] = array('form' => array(
-			'legend' => array(
-			    'title' => $this->l('Shop Information'),
-			    'image' => $this->_path.'logo.gif'
-			),
-			'input' => array(
-			    array(
-				'type' => 'text',
-				'name' => 'shop_name',
-				'label' => $this->l('Shop name'),
-				'size' => 45
-			    ),
-			    array(
-				'type' => 'text',
-				'name' => 'first_name',
-				'label' => $this->l('First Name'),
-				'size' => 45
-			    ),
-			    array(
-				'type' => 'text',
-				'name' => 'last_name',
-				'label' => $this->l('Last Name'),
-				'size' => 45
-			    ),
-			    array(
-				'type' => 'text',
-				'name' => 'last_name_2',
-				'label' => $this->l('Last Name 2'),
-				'size' => 45
-			    ),
-			    array(
-				'type' => 'text',
-				'name' => 'street',
-				'label' => $this->l('Street'),
-				'size' => 45
-			    ),
-			    array(
-				'type' => 'text',
-				'name' => 'road_number',
-				'label' => $this->l('Road number'),
-				'size' => 45
-			    ),
-			    array(
-				'type' => 'text',
-				'name' => 'portal',
-				'label' => $this->l('Portal'),
-				'size' => 45
-			    ),
-			    array(
-				'type' => 'text',
-				'name' => 'floor',
-				'label' => $this->l('Floor'),
-				'size' => 45
-			    ),
-			    array(
-				'type' => 'text',
-				'name' => 'door',
-				'label' => $this->l('Door'),
-				'size' => 45
-			    ),
-			    array(
-				'type' => 'text',
-				'name' => 'postcode',
-				'label' => $this->l('Postcode'),
-				'size' => 45
-			    ),
-			    array(
-				'type' => 'text',
-				'name' => 'city',
-				'label' => $this->l('City'),
-				'size' => 45
-			    ),
-			    array(
-				'type' => 'select',
-				'name' => 'country',
-				'label' => $this->l('Country'),
-				'options' => array(
-				    'query' => $country_list,
-				    'id' => 'id_country',
-				    'name' => 'name'
+				'legend' => array(
+					'title' => $this->l('Shop Information'),
+					'image' => $this->_path.'logo.gif'
+				),
+				'input' => array(
+					array(
+						'type' => 'text',
+						'name' => 'shop_name',
+						'label' => $this->l('Shop name'),
+						'size' => 45
+					),
+					array(
+						'type' => 'text',
+						'name' => 'first_name',
+						'label' => $this->l('First Name'),
+						'size' => 45
+					),
+					array(
+						'type' => 'text',
+						'name' => 'last_name',
+						'label' => $this->l('Last Name'),
+						'size' => 45
+					),
+					array(
+						'type' => 'text',
+						'name' => 'last_name_2',
+						'label' => $this->l('Last Name 2'),
+						'size' => 45
+					),
+					array(
+						'type' => 'text',
+						'name' => 'street',
+						'label' => $this->l('Street'),
+						'size' => 45
+					),
+					array(
+						'type' => 'text',
+						'name' => 'road_number',
+						'label' => $this->l('Road number'),
+						'size' => 45
+					),
+					array(
+						'type' => 'text',
+						'name' => 'portal',
+						'label' => $this->l('Portal'),
+						'size' => 45
+					),
+					array(
+						'type' => 'text',
+						'name' => 'floor',
+						'label' => $this->l('Floor'),
+						'size' => 45
+					),
+					array(
+						'type' => 'text',
+						'name' => 'door',
+						'label' => $this->l('Door'),
+						'size' => 45
+					),
+					array(
+						'type' => 'text',
+						'name' => 'postcode',
+						'label' => $this->l('Postcode'),
+						'size' => 45
+					),
+					array(
+						'type' => 'text',
+						'name' => 'city',
+						'label' => $this->l('City'),
+						'size' => 45
+					),
+					array(
+						'type' => 'select',
+						'name' => 'country',
+						'label' => $this->l('Country'),
+						'options' => array(
+							'query' => $country_list,
+							'id' => 'id_country',
+							'name' => 'name'
+						)
+					),
+					array(
+						'type' => 'text',
+						'name' => 'telephone',
+						'label' => $this->l('Telephone'),
+						'size' => 45
+					),
+					array(
+						'type' => 'text',
+						'name' => 'fax',
+						'label' => $this->l('Fax'),
+						'size' => 45
+					),
+					array(
+						'type' => 'text',
+						'name' => 'email',
+						'label' => $this->l('Email'),
+						'size' => 45
+					)
 				)
-			    ),
-			    array(
-				'type' => 'text',
-				'name' => 'telephone',
-				'label' => $this->l('Telephone'),
-				'size' => 45
-			    ),
-			    array(
-				'type' => 'text',
-				'name' => 'fax',
-				'label' => $this->l('Fax'),
-				'size' => 45
-			    ),
-			    array(
-				'type' => 'text',
-				'name' => 'email',
-				'label' => $this->l('Email'),
-				'size' => 45
-			    )
-			)
-			,
-			'submit' => array(
-			    'name' => 'submitSave',
-			    'title' => $this->l('Save'),
-			    'class' => 'button'
-			)
+				,
+				'submit' => array(
+					'name' => 'submitSave',
+					'title' => $this->l('Save'),
+					'class' => 'button'
+				)
 		));
 //</editor-fold>
 
@@ -549,10 +545,10 @@ class ClickLine extends CarrierModule
 	private function displayForm()
 	{
 		$this->context->smarty->assign(array(
-		    'logo_src' => $this->_path,
-		    'apply_discount' => Configuration::get('CLICKLINE_APPLY_DISCOUNT'),
-		    'ps_16' => version_compare(_PS_VERSION_, '1.6', '>='),
-		    'main_form' => $this->renderForm()
+			'logo_src' => $this->_path,
+			'apply_discount' => Configuration::get('CLICKLINE_APPLY_DISCOUNT'),
+			'ps_16' => version_compare(_PS_VERSION_, '1.6', '>='),
+			'main_form' => $this->renderForm()
 		));
 		$this->html .= ($this->display(__FILE__, '/views/templates/admin/clickline_configuration.tpl'));
 	}
@@ -566,13 +562,13 @@ class ClickLine extends CarrierModule
 	public function validateOrder()
 	{
 		if (trim(Tools::getvalue('height')) == '' ||
-			trim(Tools::getvalue('width')) == '' ||
-			trim(Tools::getvalue('depth')) == '' ||
-			trim(Tools::getvalue('data_collection_from')) == '' ||
-			trim(Tools::getvalue('hour_range_from')) == '' ||
-			trim(Tools::getvalue('merchandise_desc')) == '' ||
-			trim(Tools::getvalue('street_to')) == '' ||
-			trim(Tools::getvalue('road_number_to')) == '')
+				trim(Tools::getvalue('width')) == '' ||
+				trim(Tools::getvalue('depth')) == '' ||
+				trim(Tools::getvalue('data_collection_from')) == '' ||
+				trim(Tools::getvalue('hour_range_from')) == '' ||
+				trim(Tools::getvalue('merchandise_desc')) == '' ||
+				trim(Tools::getvalue('street_to')) == '' ||
+				trim(Tools::getvalue('road_number_to')) == '')
 			return false;
 
 		return true;
@@ -633,8 +629,6 @@ class ClickLine extends CarrierModule
 				$depth += (float) $product['shipping_length'];
 			}
 		}
-		if (version_compare(_PS_VERSION_, '1.5', '<'))
-			includeDatepicker(array('data_collection_from'));
 
 		$clorder_sm = null;
 		if (count($clorder->config) != 0)
@@ -644,37 +638,31 @@ class ClickLine extends CarrierModule
 		if (count($clorder->config_ws) != 0)
 			$clorderws_sm = $clorder->config_ws;
 
-		if (version_compare(_PS_VERSION_, '1.5', '<'))
-			$ps_version = 'true';
-		else
-			$ps_version = 'false';
-
 		$smarty->assign(array(
-		    'path' => $this->_path,
-		    'errors' => $this->post_errors,
-		    'request_uri' => Tools::safeOutput($_SERVER['REQUEST_URI']),
-		    'id_cart' => $id_cart,
-		    'clorder' => $clorder_sm,
-		    'clcart' => $clcart->config,
-		    'ps_version' => $ps_version,
-		    'balance' => Tools::displayPrice($response[0]),
-		    'weight' => $order->getTotalWeight(),
-		    'height' => $height,
-		    'width' => $width,
-		    'depth' => $depth,
-		    'products' => $products,
-		    'clorderWS' => $clorderws_sm,
-		    'address1' => $address_delivery->address1,
-		    'address2' => $address_delivery->address2,
-		    'params' => array(
-			'data_collection_from' => Tools::getValue('data_collection_from'),
-			'hour_range_from' => Tools::getValue('hour_range_from'),
-			'merchandise_desc' => Tools::getValue('merchandise_desc'),
-			'street_to' => Tools::getValue('street_to'),
-			'road_number_to' => Tools::getValue('road_number_to'),
-			'portal_to' => Tools::getValue('portal_to'),
-			'floor_to' => Tools::getValue('floor_to'),
-			'door_to' => Tools::getValue('door_to'))
+			'path' => $this->_path,
+			'errors' => $this->post_errors,
+			'request_uri' => Tools::safeOutput($_SERVER['REQUEST_URI']),
+			'id_cart' => $id_cart,
+			'clorder' => $clorder_sm,
+			'clcart' => $clcart->config,
+			'balance' => Tools::displayPrice($response[0]),
+			'weight' => $order->getTotalWeight(),
+			'height' => $height,
+			'width' => $width,
+			'depth' => $depth,
+			'products' => $products,
+			'clorderWS' => $clorderws_sm,
+			'address1' => $address_delivery->address1,
+			'address2' => $address_delivery->address2,
+			'params' => array(
+				'data_collection_from' => Tools::getValue('data_collection_from'),
+				'hour_range_from' => Tools::getValue('hour_range_from'),
+				'merchandise_desc' => Tools::getValue('merchandise_desc'),
+				'street_to' => Tools::getValue('street_to'),
+				'road_number_to' => Tools::getValue('road_number_to'),
+				'portal_to' => Tools::getValue('portal_to'),
+				'floor_to' => Tools::getValue('floor_to'),
+				'door_to' => Tools::getValue('door_to'))
 		));
 		return $this->display(__FILE__, 'views/templates/hook/admin_order.tpl');
 	}
@@ -736,7 +724,7 @@ class ClickLine extends CarrierModule
 		{
 
 			$clickline_carrier = (int) Configuration::get('CLICKLINE_CARRIER_ID');
-			if (version_compare(_PS_VERSION_, '1.5', '<') || (int) $cart->id_carrier == $clickline_carrier)
+			if ((int) $cart->id_carrier == $clickline_carrier)
 			{
 // Get ClickLine's carriers information
 				foreach ($this->clcart->config_ws as $trans)
@@ -750,7 +738,7 @@ class ClickLine extends CarrierModule
 					$row['shipping_tax'] = $trans['shipping_tax'];
 					$row['logo'] = $trans['shipping_logo'];
 					$row['price_with_tax'] = number_format(
-						(float) $trans['shipping_charge'] + ((float) $trans['shipping_charge'] * (float) $trans['shipping_tax'] / 100), 2, '.', ''
+							(float) $trans['shipping_charge'] + ((float) $trans['shipping_charge'] * (float) $trans['shipping_tax'] / 100), 2, '.', ''
 					);
 
 					$results_array[$i] = $row;
@@ -763,15 +751,15 @@ class ClickLine extends CarrierModule
 
 // Check if a carrier was selected for this cart previously
 				$carrier_selected = (
-					((int) $cart->id_carrier == (int) Configuration::get('CLICKLINE_CARRIER_ID')) ? (
-						isset($this->clcart->config['id_shipping_carrier']) ? $this->clcart->config['id_shipping_carrier'] : ''
-						) : ''
-					);
+						((int) $cart->id_carrier == (int) Configuration::get('CLICKLINE_CARRIER_ID')) ? (
+								isset($this->clcart->config['id_shipping_carrier']) ? $this->clcart->config['id_shipping_carrier'] : ''
+								) : ''
+						);
 				$carrier_service_selected = (
-					((int) $cart->id_carrier == (int) Configuration::get('CLICKLINE_CARRIER_ID')) ? (
-						isset($this->clcart->config['id_shipping_service']) ? $this->clcart->config['id_shipping_service'] : ''
-						) : ''
-					);
+						((int) $cart->id_carrier == (int) Configuration::get('CLICKLINE_CARRIER_ID')) ? (
+								isset($this->clcart->config['id_shipping_service']) ? $this->clcart->config['id_shipping_service'] : ''
+								) : ''
+						);
 
 				$carrier_selected = ((isset($this->clcart->config['id_shipping_carrier'])) ? $this->clcart->config['id_shipping_carrier'] : '');
 				$carrier_service_selected = ((isset($this->clcart->config['id_shipping_service'])) ? $this->clcart->config['id_shipping_service'] : '');
@@ -784,17 +772,16 @@ class ClickLine extends CarrierModule
 
 // Asign smarty vars
 				$smarty->assign(array(
-				    'djlCarriers' => $results_array,
-				    'carrier_sel' => $carrier_selected,
-				    'service_sel' => $carrier_service_selected,
-				    'cp_to' => $usuario_datos[0]['postcode'],
-				    'cp_from' => Configuration::get('CLICKLINE_CP_FROM'),
-				    'country_to' => $country_to,
-				    'country_from' => Configuration::get('PS_SHOP_COUNTRY'),
-				    'weight' => $weight,
-				    'clickline_module_dir' => $this->_path,
-				    'ps14' => (version_compare(_PS_VERSION_, '1.5', '<')),
-				    'ps15' => (version_compare(_PS_VERSION_, '1.5', '>=') && version_compare(_PS_VERSION_, '1.6', '<'))
+					'djlCarriers' => $results_array,
+					'carrier_sel' => $carrier_selected,
+					'service_sel' => $carrier_service_selected,
+					'cp_to' => $usuario_datos[0]['postcode'],
+					'cp_from' => Configuration::get('CLICKLINE_CP_FROM'),
+					'country_to' => $country_to,
+					'country_from' => Configuration::get('PS_SHOP_COUNTRY'),
+					'weight' => $weight,
+					'clickline_module_dir' => $this->_path,
+					'ps15' => (version_compare(_PS_VERSION_, '1.5', '>=') && version_compare(_PS_VERSION_, '1.6', '<'))
 				));
 
 				return $this->display(__FILE__, '/views/templates/front/clickline_carrier.tpl');
@@ -866,10 +853,7 @@ class ClickLine extends CarrierModule
 					}
 				}
 
-				if (version_compare(_PS_VERSION_, '1.5', '<'))
-					echo $this->displayConfirmation($this->l('ClickLine Module Configuration has been updated.'));
-				else
-					$this->html .= $this->displayConfirmation($this->l('ClickLine Module Configuration has been updated.'));
+				$this->html .= $this->displayConfirmation($this->l('ClickLine Module Configuration has been updated.'));
 			}
 			elseif (Tools::isSubmit('submitClicklineInfo'))
 			{
@@ -881,10 +865,7 @@ class ClickLine extends CarrierModule
 		}
 		catch (Exception $ex)
 		{
-			if (version_compare(_PS_VERSION_, '1.5', '<'))
-				echo $this->displayError($ex->getMessage());
-			else
-				$this->html .= $this->displayError($ex->getMessage());
+			$this->html .= $this->displayError($ex->getMessage());
 		}
 	}
 
@@ -942,17 +923,17 @@ class ClickLine extends CarrierModule
 		{
 // Get shipping charge with the package size
 			$shipping = array(
-			    array('shipping_width' => Tools::getvalue('width'),
-				'shipping_height' => Tools::getvalue('height'),
-				'shipping_length' => Tools::getvalue('depth'),
-				'shipping_weight' => $order->getTotalWeight())
+				array('shipping_width' => Tools::getvalue('width'),
+					'shipping_height' => Tools::getvalue('height'),
+					'shipping_length' => Tools::getvalue('depth'),
+					'shipping_weight' => $order->getTotalWeight())
 			);
 
 			$trans = $clickline->getShippingQuote(array(
-			    'shipping_cp_to' => $address_delivery->postcode,
-			    'country_to' => $country_to,
-			    'packages' => 1,
-			    'shippings' => $shipping));
+				'shipping_cp_to' => $address_delivery->postcode,
+				'country_to' => $country_to,
+				'packages' => 1,
+				'shippings' => $shipping));
 
 // Cast SimpleXMLElement to array
 			$trans_count = count($trans);
@@ -984,19 +965,19 @@ class ClickLine extends CarrierModule
 			$packages = $this->getPackagesArray($order, $charge, $tax);
 
 			$put_order = $clickline->putOrder(array(
-			    'transporter_id' => $transporter_id,
-			    'service_id' => $service_id,
-			    'service_name' => $service_name,
-			    'hour_min_collection' => Tools::getvalue('hour_range_from'),
-			    'product_code' => $product_code,
-			    'payment_method' => 'bolsapaymentmethod',
-			    'client_ip' => $_SERVER['REMOTE_ADDR'],
-			    'comments' => '',
-			    'code_to' => $country_to,
-			    'billing' => $billing,
-			    'from' => $from,
-			    'to' => $to,
-			    'packages' => $packages));
+				'transporter_id' => $transporter_id,
+				'service_id' => $service_id,
+				'service_name' => $service_name,
+				'hour_min_collection' => Tools::getvalue('hour_range_from'),
+				'product_code' => $product_code,
+				'payment_method' => 'bolsapaymentmethod',
+				'client_ip' => $_SERVER['REMOTE_ADDR'],
+				'comments' => '',
+				'code_to' => $country_to,
+				'billing' => $billing,
+				'from' => $from,
+				'to' => $to,
+				'packages' => $packages));
 
 			if (count($put_order['order']) > 0)
 			{
@@ -1014,9 +995,9 @@ class ClickLine extends CarrierModule
 				$put_order['ticket'] = $array[0];
 
 				$clorder->config_ws = array('order' => $put_order['order'],
-				    'proforma_pdf' => $put_order['proforma_pdf'],
-				    'consignment_pdf' => $put_order['consignment_pdf'],
-				    'ticket' => $put_order['ticket']);
+					'proforma_pdf' => $put_order['proforma_pdf'],
+					'consignment_pdf' => $put_order['consignment_pdf'],
+					'ticket' => $put_order['ticket']);
 
 				$clorder->addSql();
 			}
@@ -1030,107 +1011,107 @@ class ClickLine extends CarrierModule
 	private function getBillingArray($tax)
 	{
 		return array(
-		    'firstname_billing' => Configuration::get('CLICKLINE_FIRST_NAME'),
-		    'lastname_billing' => Configuration::get('CLICKLINE_LAST_NAME'),
-		    'lastname2_billing' => Configuration::get('CLICKLINE_LAST_NAME_2'),
-		    'company_billing' => Configuration::get('CLICKLINE_SHOP_NAME'),
-		    'taxvat' => $tax,
-		    'road_type_billing' => 'street',
-		    'street_billing' => Configuration::get('CLICKLINE_STREET'),
-		    'road_number_billing' => Configuration::get('CLICKLINE_ROAD_NUMBER'),
-		    'portal_billing' => Configuration::get('CLICKLINE_PORTAL'),
-		    'floor_billing' => Configuration::get('CLICKLINE_FLOOR'),
-		    'door_billing' => Configuration::get('CLICKLINE_DOOR'),
-		    'postcode_billing' => Configuration::get('CLICKLINE_POSTCODE'),
-		    'city_billing' => Configuration::get('CLICKLINE_CITY'),
-		    'country_billing' => 'ES',
-		    'telephone_billing' => Configuration::get('CLICKLINE_TELEPHONE'),
-		    'fax_billing' => Configuration::get('CLICKLINE_FAX'),
-		    'email_billing' => Configuration::get('CLICKLINE_EMAIL'));
+			'firstname_billing' => Configuration::get('CLICKLINE_FIRST_NAME'),
+			'lastname_billing' => Configuration::get('CLICKLINE_LAST_NAME'),
+			'lastname2_billing' => Configuration::get('CLICKLINE_LAST_NAME_2'),
+			'company_billing' => Configuration::get('CLICKLINE_SHOP_NAME'),
+			'taxvat' => $tax,
+			'road_type_billing' => 'street',
+			'street_billing' => Configuration::get('CLICKLINE_STREET'),
+			'road_number_billing' => Configuration::get('CLICKLINE_ROAD_NUMBER'),
+			'portal_billing' => Configuration::get('CLICKLINE_PORTAL'),
+			'floor_billing' => Configuration::get('CLICKLINE_FLOOR'),
+			'door_billing' => Configuration::get('CLICKLINE_DOOR'),
+			'postcode_billing' => Configuration::get('CLICKLINE_POSTCODE'),
+			'city_billing' => Configuration::get('CLICKLINE_CITY'),
+			'country_billing' => 'ES',
+			'telephone_billing' => Configuration::get('CLICKLINE_TELEPHONE'),
+			'fax_billing' => Configuration::get('CLICKLINE_FAX'),
+			'email_billing' => Configuration::get('CLICKLINE_EMAIL'));
 	}
 
 	private function getFromArray($order)
 	{
 		return array(
-		    'firstname_from' => Configuration::get('CLICKLINE_FIRST_NAME'),
-		    'lastname_from' => Configuration::get('CLICKLINE_LAST_NAME'),
-		    'lastname2_from' => Configuration::get('CLICKLINE_LAST_NAME_2'),
-		    'company_from' => Configuration::get('CLICKLINE_SHOP_NAME'),
-		    'road_type_from' => 'street',
-		    'street_from' => Configuration::get('CLICKLINE_STREET'),
-		    'road_number_from' => Configuration::get('CLICKLINE_ROAD_NUMBER'),
-		    'portal_from' => Configuration::get('CLICKLINE_PORTAL'),
-		    'floor_from' => Configuration::get('CLICKLINE_FLOOR'),
-		    'door_from' => Configuration::get('CLICKLINE_DOOR'),
-		    'postcode_from' => Configuration::get('CLICKLINE_POSTCODE'),
-		    'city_from' => Configuration::get('CLICKLINE_CITY'),
-		    'country_from' => 'ES',
-		    'telephone_from' => Configuration::get('CLICKLINE_TELEPHONE'),
-		    'fax_from' => Configuration::get('CLICKLINE_FAX'),
-		    'email_from' => Configuration::get('CLICKLINE_EMAIL'),
-		    'data_collection_from' => Tools::getvalue('data_collection_from'),
-		    'hour_range_from' => Tools::getvalue('hour_range_from'),
-		    'merchandise_value' => $order->getTotalProductsWithoutTaxes(),
-		    'merchandise_desc' => Tools::getvalue('merchandise_desc'),
-		    'merchandise_type' => '');
+			'firstname_from' => Configuration::get('CLICKLINE_FIRST_NAME'),
+			'lastname_from' => Configuration::get('CLICKLINE_LAST_NAME'),
+			'lastname2_from' => Configuration::get('CLICKLINE_LAST_NAME_2'),
+			'company_from' => Configuration::get('CLICKLINE_SHOP_NAME'),
+			'road_type_from' => 'street',
+			'street_from' => Configuration::get('CLICKLINE_STREET'),
+			'road_number_from' => Configuration::get('CLICKLINE_ROAD_NUMBER'),
+			'portal_from' => Configuration::get('CLICKLINE_PORTAL'),
+			'floor_from' => Configuration::get('CLICKLINE_FLOOR'),
+			'door_from' => Configuration::get('CLICKLINE_DOOR'),
+			'postcode_from' => Configuration::get('CLICKLINE_POSTCODE'),
+			'city_from' => Configuration::get('CLICKLINE_CITY'),
+			'country_from' => 'ES',
+			'telephone_from' => Configuration::get('CLICKLINE_TELEPHONE'),
+			'fax_from' => Configuration::get('CLICKLINE_FAX'),
+			'email_from' => Configuration::get('CLICKLINE_EMAIL'),
+			'data_collection_from' => Tools::getvalue('data_collection_from'),
+			'hour_range_from' => Tools::getvalue('hour_range_from'),
+			'merchandise_value' => $order->getTotalProductsWithoutTaxes(),
+			'merchandise_desc' => Tools::getvalue('merchandise_desc'),
+			'merchandise_type' => '');
 	}
 
 	private function getToArray($address_delivery, $lastname_to, $lastname2_to, $country_to, $customer)
 	{
 		return array(
-		    'firstname_to' => $address_delivery->firstname,
-		    'lastname_to' => $lastname_to,
-		    'lastname2_to' => $lastname2_to,
-		    'company_to' => (
-		    ($address_delivery->company != '') ? $address_delivery->company : ($address_delivery->firstname.' '.$address_delivery->lastname)
-		    ),
-		    'road_type_to' => 'street',
-		    'street_to' => Tools::getvalue('street_to'),
-		    'road_number_to' => Tools::getvalue('road_number_to'),
-		    'portal_to' => Tools::getvalue('portal_to'),
-		    'floor_to' => Tools::getvalue('floor_to'),
-		    'door_to' => Tools::getvalue('door_to'),
-		    'postcode_to' => $address_delivery->postcode,
-		    'city_to' => $address_delivery->city,
-		    'country_to' => $country_to,
-		    'telephone_to' => (($address_delivery->phone != '') ? $address_delivery->phone : $address_delivery->phone_mobile),
-		    'fax_to' => '',
-		    'email_to' => $customer->email);
+			'firstname_to' => $address_delivery->firstname,
+			'lastname_to' => $lastname_to,
+			'lastname2_to' => $lastname2_to,
+			'company_to' => (
+			($address_delivery->company != '') ? $address_delivery->company : ($address_delivery->firstname.' '.$address_delivery->lastname)
+			),
+			'road_type_to' => 'street',
+			'street_to' => Tools::getvalue('street_to'),
+			'road_number_to' => Tools::getvalue('road_number_to'),
+			'portal_to' => Tools::getvalue('portal_to'),
+			'floor_to' => Tools::getvalue('floor_to'),
+			'door_to' => Tools::getvalue('door_to'),
+			'postcode_to' => $address_delivery->postcode,
+			'city_to' => $address_delivery->city,
+			'country_to' => $country_to,
+			'telephone_to' => (($address_delivery->phone != '') ? $address_delivery->phone : $address_delivery->phone_mobile),
+			'fax_to' => '',
+			'email_to' => $customer->email);
 	}
 
 	private function getPackagesArray($order, $charge, $tax)
 	{
 		return array(
-		    'width' => Tools::getvalue('width'),
-		    'height' => Tools::getvalue('height'),
-		    'length' => Tools::getvalue('depth'),
-		    'weight' => $order->getTotalWeight(),
-		    'charge' => $charge,
-		    'bultos' => '1',
-		    'taxes_percentage' => $tax);
+			'width' => Tools::getvalue('width'),
+			'height' => Tools::getvalue('height'),
+			'length' => Tools::getvalue('depth'),
+			'weight' => $order->getTotalWeight(),
+			'charge' => $charge,
+			'bultos' => '1',
+			'taxes_percentage' => $tax);
 	}
 
 	private function getClorderConfigArray($transporter_id, $service_id, $charge, $product_code, $service_name, $tax)
 	{
 		return array('id_shipping_carrier' => $transporter_id,
-		    'id_shipping_service' => $service_id,
-		    'shipping_charge' => $charge,
-		    'shipping_code_carrier' => $product_code,
-		    'shipping_name_carrier' => $service_name,
-		    'shipping_tax' => $tax,
-		    'data_collection_from' => Tools::getvalue('data_collection_from'),
-		    'hour_range_from' => Tools::getvalue('hour_range_from'),
-		    'merchandise_desc' => Tools::getvalue('merchandise_desc'),
-		    'street_billing' => Configuration::get('CLICKLINE_STREET'),
-		    'road_number_billing' => Configuration::get('CLICKLINE_ROAD_NUMBER'),
-		    'portal_billing' => Configuration::get('CLICKLINE_PORTAL'),
-		    'floor_billing' => Configuration::get('CLICKLINE_FLOOR'),
-		    'door_billing' => Configuration::get('CLICKLINE_DOOR'),
-		    'street_to' => Tools::getvalue('street_to'),
-		    'road_number_to' => Tools::getvalue('road_number_to'),
-		    'portal_to' => Tools::getvalue('portal_to'),
-		    'floor_to' => Tools::getvalue('floor_to'),
-		    'door_to' => Tools::getvalue('door_to'));
+			'id_shipping_service' => $service_id,
+			'shipping_charge' => $charge,
+			'shipping_code_carrier' => $product_code,
+			'shipping_name_carrier' => $service_name,
+			'shipping_tax' => $tax,
+			'data_collection_from' => Tools::getvalue('data_collection_from'),
+			'hour_range_from' => Tools::getvalue('hour_range_from'),
+			'merchandise_desc' => Tools::getvalue('merchandise_desc'),
+			'street_billing' => Configuration::get('CLICKLINE_STREET'),
+			'road_number_billing' => Configuration::get('CLICKLINE_ROAD_NUMBER'),
+			'portal_billing' => Configuration::get('CLICKLINE_PORTAL'),
+			'floor_billing' => Configuration::get('CLICKLINE_FLOOR'),
+			'door_billing' => Configuration::get('CLICKLINE_DOOR'),
+			'street_to' => Tools::getvalue('street_to'),
+			'road_number_to' => Tools::getvalue('road_number_to'),
+			'portal_to' => Tools::getvalue('portal_to'),
+			'floor_to' => Tools::getvalue('floor_to'),
+			'door_to' => Tools::getvalue('door_to'));
 	}
 
 	public function validateWeight($cart)
@@ -1180,9 +1161,9 @@ class ClickLine extends CarrierModule
 		{
 // Get size of the product
 			$shipping = array('shipping_width' => $products[$i]['width'],
-			    'shipping_height' => $products[$i]['height'],
-			    'shipping_length' => $products[$i]['depth'],
-			    'shipping_weight' => $products[$i]['weight']);
+				'shipping_height' => $products[$i]['height'],
+				'shipping_length' => $products[$i]['depth'],
+				'shipping_weight' => $products[$i]['weight']);
 
 // Add the amount of products from the cart
 			for ($j = 0; $j < $products[$i]['quantity']; $j++)
@@ -1257,8 +1238,8 @@ class ClickLine extends CarrierModule
 				$user_data = $this->getCountryAndCP($params);
 // Check if the weight , PC or country have changed
 				if (($weight != $this->clcart->config['weight']) ||
-					($user_data['cp'] != $this->clcart->config['cp']) ||
-					($user_data['country_code'] != $this->clcart->config['country_code']))
+						($user_data['cp'] != $this->clcart->config['cp']) ||
+						($user_data['country_code'] != $this->clcart->config['country_code']))
 				{
 // Get again the cart products
 					$this->products = $this->validateMeasures($params);
@@ -1287,8 +1268,8 @@ class ClickLine extends CarrierModule
 		if (!$clcarrier_changed && $params->id_customer != 0)
 		{
 			$shipping_charge = (number_format(
-					(float) $this->clcart->config['shipping_charge'] +
-					((float) $this->clcart->config['shipping_charge'] * (float) $this->clcart->config['shipping_tax'] / 100) + $shipping_cost, 2, '.', ''));
+							(float) $this->clcart->config['shipping_charge'] +
+							((float) $this->clcart->config['shipping_charge'] * (float) $this->clcart->config['shipping_tax'] / 100) + $shipping_cost, 2, '.', ''));
 			return $shipping_charge;
 		}
 		if (count($this->clcart->config_ws) > 0)
@@ -1344,8 +1325,8 @@ class ClickLine extends CarrierModule
 		$this->clcart->updateSql();
 
 		return number_format(
-			(float) $this->clcart->config_ws[$indice]['shipping_charge'] +
-			((float) $this->clcart->config_ws[$indice]['shipping_charge'] * (float) $this->clcart->config_ws[$indice]['shipping_tax'] / 100), 2, '.', '');
+				(float) $this->clcart->config_ws[$indice]['shipping_charge'] +
+				((float) $this->clcart->config_ws[$indice]['shipping_charge'] * (float) $this->clcart->config_ws[$indice]['shipping_tax'] / 100), 2, '.', '');
 	}
 
 	public function getOrderShippingCostExternal($params)
@@ -1404,18 +1385,18 @@ class ClickLine extends CarrierModule
 		if (!$shipping || !Configuration::get('CLICKLINE_APPLY_DISCOUNT'))
 		{
 			$trans = $clickline->getShippingQuoteNoMesure(array(
-			    'shipping_cp_to' => $user_data['cp'],
-			    'country_to' => $user_data['country_code'],
-			    'weight' => $weight,
-			    'packages' => 1));
+				'shipping_cp_to' => $user_data['cp'],
+				'country_to' => $user_data['country_code'],
+				'weight' => $weight,
+				'packages' => 1));
 		}
 		else
 		{
 			$trans = $clickline->getShippingQuote(array(
-			    'shipping_cp_to' => $user_data['cp'],
-			    'country_to' => $user_data['country_code'],
-			    'packages' => 1,
-			    'shippings' => $shipping));
+				'shipping_cp_to' => $user_data['cp'],
+				'country_to' => $user_data['country_code'],
+				'packages' => 1,
+				'shippings' => $shipping));
 		}
 
 // Cast SimpleXMLElement to array
@@ -1469,13 +1450,7 @@ class ClickLine extends CarrierModule
 		if ((int) strcmp((version_compare(_PS_VERSION_, '1.5', '>=') ? Tools::getValue('configure') : Tools::getValue('module_name')), $this->name) == 0)
 		{
 
-			if (version_compare(_PS_VERSION_, '1.5', '<'))
-			{
-				$output = '<link type="text/css" rel="stylesheet" href="'._MODULE_DIR_.$this->name.'/css/admin.css" />';
-				$output.= '<script type="text/javascript" src="'._MODULE_DIR_.$this->name.'/js/admin.js" />';
-				return $output;
-			}
-			elseif (isset(Context::getContext()->controller) && $this->context->controller != null)
+			if (isset(Context::getContext()->controller) && $this->context->controller != null)
 			{
 				$this->context->controller->addCSS(_MODULE_DIR_.$this->name.'/css/admin.css');
 				$this->context->controller->addJS(_MODULE_DIR_.$this->name.'/js/admin.js');
@@ -1485,9 +1460,7 @@ class ClickLine extends CarrierModule
 
 	public function hookHeader($params)
 	{
-		if (version_compare(_PS_VERSION_, '1.5', '<'))
-			Tools::addCSS(_MODULE_DIR_.$this->name.'/css/timetable.css', 'all');
-		elseif (isset(Context::getContext()->controller))
+		if (isset(Context::getContext()->controller))
 			Context::getContext()->controller->addCSS(_MODULE_DIR_.$this->name.'/css/timetable.css', 'all');
 		else
 			return;
@@ -1501,20 +1474,19 @@ class ClickLine extends CarrierModule
 
 // Check if a carrier was selected for this cart previously
 			$carrier_selected = (
-				((int) $cart->id_carrier == (int) Configuration::get('CLICKLINE_CARRIER_ID')) ? (
-					isset($this->clcart->config['id_shipping_carrier']) ? $this->clcart->config['id_shipping_carrier'] : ''
-					) : ''
-				);
+					((int) $cart->id_carrier == (int) Configuration::get('CLICKLINE_CARRIER_ID')) ? (
+							isset($this->clcart->config['id_shipping_carrier']) ? $this->clcart->config['id_shipping_carrier'] : ''
+							) : ''
+					);
 
 			$carrier_selected = ((isset($this->clcart->config['id_shipping_carrier'])) ? $this->clcart->config['id_shipping_carrier'] : '');
 
 // Asign smarty vars
 			$this->context->smarty->assign(array(
-			    'clickline_carrier' => (int) Configuration::get('CLICKLINE_CARRIER_ID'),
-			    'id_carrier' => (int) $cart->id_carrier,
-			    'carrier_sel' => $carrier_selected,
-			    'ps14' => (version_compare(_PS_VERSION_, '1.5', '<')),
-			    'ps15' => (version_compare(_PS_VERSION_, '1.5', '>=') && version_compare(_PS_VERSION_, '1.6', '<'))
+				'clickline_carrier' => (int) Configuration::get('CLICKLINE_CARRIER_ID'),
+				'id_carrier' => (int) $cart->id_carrier,
+				'carrier_sel' => $carrier_selected,
+				'ps15' => (version_compare(_PS_VERSION_, '1.5', '>=') && version_compare(_PS_VERSION_, '1.6', '<'))
 			));
 
 			return $this->display(__FILE__, '/views/templates/hook/hook_header.tpl');

@@ -24,16 +24,13 @@
  */
 
 $(document).ready(function() {
-    if(jQuery.isFunction($("#data_collection_from").datepicker)){
-        if ($("#ps_version").val() == "true") {
-            $("#data_collection_from").datepicker("option", "dateFormat", "dd/mm/yy");
-        }
-        else {
-            $("#data_collection_from").datepicker({
-                prevText: "",
-                nextText: "",
-                dateFormat: "dd/mm/yy"});
-        }
+    if (jQuery.isFunction($("#data_collection_from").datepicker)) {
+
+        $("#data_collection_from").datepicker({
+            prevText: "",
+            nextText: "",
+            dateFormat: "dd/mm/yy"});
+        
         if ($("#data_collection_from").val() != '') {
             $("#data_collection_from").datepicker("setDate", $("#data_collection_from").val());
         }

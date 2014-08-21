@@ -4,7 +4,7 @@
 	<displayName><![CDATA[ClickLine]]></displayName>
 	<version><![CDATA[1.3.2]]></version>
 	<description><![CDATA[Ofrezca a sus clientes diferentes m&eacute;todos de entrega]]></description>
-	<author><![CDATA[clickline.com]]></author>
+	<author><![CDATA[alabazweb.com]]></author>
 	<tab><![CDATA[shipping_logistics]]></tab>
 	<is_configurable>1</is_configurable>
 	<need_instance>1</need_instance>

@@ -46,7 +46,7 @@
                     <a href="#{$smarty.foreach.myLoop.index|escape:'htmlall':'UTF-8'}" id="carrierC{$carrier.id_carrier|intval|escape:'htmlall':'UTF-8'}_{$carrier.id_service|intval|escape:'htmlall':'UTF-8'}" name="carrierC{$carrier.id_carrier|intval|escape:'htmlall':'UTF-8'}_{$carrier.id_service|intval|escape:'htmlall':'UTF-8'}" 
                        onclick="javascript:DJLupdateCarrierSelectionAndGift({$carrier.id_carrier|intval|escape:'javascript':'UTF-8'},{$carrier.id_service|intval|escape:'javascript':'UTF-8'});"
                        {if $carrier.id_carrier == $carrier_sel && $carrier.id_service == $service_sel} class="clickline_selected" {else} class="carrierC" {/if}>
-                        <img src="{$clickline_module_dir}/img/thumb/timthumb.php?src={$carrier.logo|escape:'htmlall':'UTF-8'}" alt="{$carrier.name|escape:'htmlall':'UTF-8'}" title="{$carrier.name|escape:'htmlall':'UTF-8'}" width="100" height="65"></br>
+                        <img src="{$clickline_module_dir}lib/thumb/timthumb.php?src={$carrier.logo|escape:'htmlall':'UTF-8'}" alt="{$carrier.name|escape:'htmlall':'UTF-8'}" title="{$carrier.name|escape:'htmlall':'UTF-8'}" width="100" height="65"></br>
                         {$carrier.name|escape:'htmlall':'UTF-8'} - {$carrier.code_carrier|escape:'htmlall':'UTF-8'}
                         <span class="price">
                             {convertPrice price=$carrier.price}

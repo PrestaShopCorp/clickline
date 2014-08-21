@@ -44,14 +44,14 @@
     <div id="clickline-menu" class="row {if $ps_16 eq false}not_{/if}ps_16">
         <div class="clickline-menu-option col-xs-3" id="account-option">
             <a href="https://www.clickline.com/customer/account/create/" target="_blank">
-                <img class="img-responsive" src="{$logo_src|escape:'htmlall':'UTF-8'}img/settings_options/create_account.jpg" alt="{l s='Create an account' mod='clickline'}"/>
+                <img class="img-responsive" src="{$logo_src|escape:'htmlall':'UTF-8'}img/settings_options/create_account.png" alt="{l s='Create an account' mod='clickline'}"/>
                 <div>
                     <h3>{l s='Create an account' mod='clickline'}</h3>
                 </div>
             </a>
         </div>
         <div class="clickline-menu-option col-xs-3" id="settings-option">
-            <img class="img-responsive" src="{$logo_src|escape:'htmlall':'UTF-8'}img/settings_options/settings.jpg" alt="{l s='Settings' mod='clickline'}"/>
+            <img class="img-responsive" src="{$logo_src|escape:'htmlall':'UTF-8'}img/settings_options/settings.png" alt="{l s='Settings' mod='clickline'}"/>
             <div>
                 <h3>{l s='Settings' mod='clickline'}</h3>
             </div>

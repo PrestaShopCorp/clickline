@@ -41,9 +41,7 @@
             var hasInnerText = (document.getElementsByTagName("body")[0].innerText != undefined) ? true : false;
                     // Actualiza el importe de Clickline
                     if (!hasInnerText) {
-    {if $ps14}
-            $('#id_carrier{$clickline_carrier|escape:'javascript':'UTF-8'}').parent().parent().children(".carrier_price").children("span.price")[0].textContent = $('input[name=clickline_price_with_tax' + id_carrier + '_' + id_service + ']').val();
-    {elseif $ps15}
+    {if $ps15}
             $("input[value='{$clickline_carrier|escape:'javascript':'UTF-8'},']").parent().children("label").children("table").children("tbody").children("tr").children("td").children("div.delivery_option_price")[0].textContent = $('input[name=clickline_price_with_tax' + id_carrier + '_' + id_service + ']').val() + " {if $use_taxes == 1}{l s='(tax incl.)' mod='clickline'}{else}{l s='(tax excl.)' mod='clickline'}{/if}";
     {else}
             var click_table = $("table.resume").filter(function() {
@@ -53,9 +51,7 @@
     {/if}
             }
             else {
-    {if $ps14}
-            $('#id_carrier{$clickline_carrier|escape:'javascript':'UTF-8'}').parent().parent().children(".carrier_price").children("span.price")[0].innerText = $('input[name=clickline_price_with_tax' + id_carrier + '_' + id_service + ']').val();
-    {elseif $ps15}
+    {if $ps15}
             $("input[value='{$clickline_carrier|escape:'javascript':'UTF-8'},']").parent().children("label").children("table").children("tbody").children("tr").children("td").children("div.delivery_option_price")[0].innerText = $('input[name=clickline_price_with_tax' + id_carrier + '_' + id_service + ']').val() + " {if $use_taxes == 1}{l s='(tax incl.)' mod='clickline'}{else}{l s='(tax excl.)' mod='clickline'}{/if}";
     {else}
             var click_table = $("table.resume").filter(function() {
@@ -113,11 +109,8 @@
 
         function change_action_form()
     {ldelim}
-    {if $ps14}
-        $('input[name^="id_carrier"]').click(function()
-    {else}        
+       
         $('input[name^="delivery_option"]').click(function()
-    {/if}
     {ldelim}
         $('#carrierTableCL').hide();
     {if $opc}
@@ -156,9 +149,6 @@
         {/if}
     {/if}
     {if $id_carrier != $clickline_carrier}
-        {if $ps14}
-        if($('input[name="id_carrier"]:checked').val() != '{$clickline_carrier|escape:'javascript':'UTF-8'}')
-        {/if}
         $('#carrierTableCL').hide();
     {/if}
         change_action_form();

@@ -24,7 +24,7 @@
 *}
 </br>
 
-<fieldset style="{if $ps_version eq 'true'}width:400px{/if}">
+<fieldset>
     <legend><img src="{$path|escape:'htmlall':'UTF-8'}logo.png" alt="" />{l s='Clickline Information' mod='clickline'}</legend>
         {if isset($errors[0])}
         <span style="color:red">{$errors[0]|escape:'htmlall':'UTF-8'}</span>	
@@ -37,8 +37,7 @@
         <input type="hidden" name="shipping_code_carrier" id="shipping_code_carrier" value="{if isset($clorder)}{$clorder['shipping_code_carrier']|escape:'htmlall':'UTF-8'}{else}{$clcart['shipping_code_carrier']|escape:'htmlall':'UTF-8'}{/if}" />
         <input type="hidden" name="shipping_name_carrier" id="shipping_name_carrier" value="{if isset($clorder)}{$clorder['shipping_name_carrier']|escape:'htmlall':'UTF-8'}{else}{$clcart['shipping_name_carrier']|escape:'htmlall':'UTF-8'}{/if}" />
         <input type="hidden" name="shipping_tax" id="shipping_tax" value="{if isset($clorder)}{$clorder['shipping_tax']|escape:'htmlall':'UTF-8'}{else}{$clcart['shipping_tax']|escape:'htmlall':'UTF-8'}{/if}" />
-        <input type="hidden" name="ps_version" id="ps_version" value="{$ps_version|escape:'htmlall':'UTF-8'}" />
-
+       
         <table width="100%">
             <tr>
                 <td width="40">

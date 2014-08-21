@@ -1175,7 +1175,7 @@ class timthumb {
 	protected function getURL($url, $tempfile){
 		$this->lastURLError = false;
 		$url = preg_replace('/ /', '%20', $url);
-		/*if(function_exists('curl_init')){
+		if(function_exists('curl_init')){
 			$this->debug(3, "Curl is installed so using it to fetch URL.");
 			self::$curlFH = fopen($tempfile, 'w');
 			if(! self::$curlFH){
@@ -1212,7 +1212,7 @@ class timthumb {
 				curl_close($curl);
 				return false;
 			}
-		} else {*/
+		} else {
 			$img = @file_get_contents ($url);
 			if($img === false){
 				$err = error_get_last();
@@ -1232,7 +1232,7 @@ class timthumb {
 				return false;
 			}
 			return true;
-		//}
+		}
 
 	}
 	protected function serveImg($file){
