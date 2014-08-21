@@ -23,239 +23,192 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 </br>
+<div class="row">
+    <div class="col-lg-7">
+        <div class="panel">
+            <div class="panel-heading">
+                <img src="{$path|escape:'htmlall':'UTF-8'}logo.png" alt="" />{l s='Clickline Information' mod='clickline'}
 
-<fieldset>
-    <legend><img src="{$path|escape:'htmlall':'UTF-8'}logo.png" alt="" />{l s='Clickline Information' mod='clickline'}</legend>
-        {if isset($errors[0])}
-        <span style="color:red">{$errors[0]|escape:'htmlall':'UTF-8'}</span>	
-    {/if}	
-    <form action="{$request_uri|escape:'none':'UTF-8'}" method="post" style="display:none;" id="clickline-order-form">
-        <input type="hidden" name="id_cart" id="id_cart" value="{$id_cart|escape:'htmlall':'UTF-8'}" />
-        <input type="hidden" name="id_shipping_carrier" id="id_shipping_carrier" value="{if isset($clorder)}{$clorder['id_shipping_carrier']|escape:'htmlall':'UTF-8'}{else}{$clcart['id_shipping_carrier']|escape:'htmlall':'UTF-8'}{/if}" />
-        <input type="hidden" name="id_shipping_service" id="id_shipping_service" value="{if isset($clorder)}{$clorder['id_shipping_service']|escape:'htmlall':'UTF-8'}{else}{$clcart['id_shipping_service']|escape:'htmlall':'UTF-8'}{/if}" />
-        <input type="hidden" name="shipping_charge" id="shipping_charge" value="{if isset($clorder)}{$clorder['shipping_charge']|escape:'htmlall':'UTF-8'}{else}{$clcart['shipping_charge']|escape:'htmlall':'UTF-8'}{/if}" />
-        <input type="hidden" name="shipping_code_carrier" id="shipping_code_carrier" value="{if isset($clorder)}{$clorder['shipping_code_carrier']|escape:'htmlall':'UTF-8'}{else}{$clcart['shipping_code_carrier']|escape:'htmlall':'UTF-8'}{/if}" />
-        <input type="hidden" name="shipping_name_carrier" id="shipping_name_carrier" value="{if isset($clorder)}{$clorder['shipping_name_carrier']|escape:'htmlall':'UTF-8'}{else}{$clcart['shipping_name_carrier']|escape:'htmlall':'UTF-8'}{/if}" />
-        <input type="hidden" name="shipping_tax" id="shipping_tax" value="{if isset($clorder)}{$clorder['shipping_tax']|escape:'htmlall':'UTF-8'}{else}{$clcart['shipping_tax']|escape:'htmlall':'UTF-8'}{/if}" />
-       
-        <table width="100%">
-            <tr>
-                <td width="40">
-                    <label style="width:150px">{l s='Available balance' mod='clickline'}: </label>
-                </td>
-                <td>
-                    {$balance|escape:'htmlall':'UTF-8'}
-                </td>
-            </tr>
-            <tr>
-                <td width="40">
-                    <label style="width:150px">{l s='Carrier name' mod='clickline'}: </label>
-                </td>
-                <td>
-                    {$clcart['shipping_name_carrier']|escape:'htmlall':'UTF-8'}
-                </td>
-            </tr>
-            <tr>
-                <td width="40">
-                    <label style="width:150px">{l s='Carrier code' mod='clickline'}: </label>
-                </td>
-                <td>
-                    {$clcart['shipping_code_carrier']|escape:'htmlall':'UTF-8'}
-                </td>
-            </tr>
-            <tr>
-                <td width="40">
-                    <label style="width:150px">{l s='Tax' mod='clickline'}: </label>
-                </td>
-                <td>
-                    {$clcart['shipping_tax']|escape:'htmlall':'UTF-8'} %
-                </td>
-            </tr>
-            <tr>
-                <td width="40">
-                    <label style="width:150px">{l s='Charge without taxes' mod='clickline'}: </label>
-                </td>
-                <td>
-            {if isset($clorder)}{$clorder['shipping_charge']|escape:'htmlall':'UTF-8'}{else}{$clcart['shipping_charge']|escape:'htmlall':'UTF-8'}{/if}
-        </td>
-    </tr>
-    <tr>
-        <td width="40">
-            <label style="width:150px">{l s='Weight' mod='clickline'}: </label>
-        </td>
-        <td>
-            {$weight|escape:'htmlall':'UTF-8'} Kg
-            <input type="hidden" id="height" name="height" value="{$height|escape:'htmlall':'UTF-8'}" />
-            <input type="hidden" id="width" name="width" value="{$width|escape:'htmlall':'UTF-8'}" />
-            <input type="hidden" id="depth" name="depth" value="{$depth|escape:'htmlall':'UTF-8'}" />
-        </td>
-    </tr>
-    {if $products!=false}
-        <tr>
-            <td width="40">
-                <label style="width:150px">{l s='Package measures' mod='clickline'}: </label>
-            </td>
-            <td>
-                {$height|escape:'htmlall':'UTF-8'} cm&nbsp;x&nbsp;{$width|escape:'htmlall':'UTF-8'} cm&nbsp;x&nbsp;{$depth|escape:'htmlall':'UTF-8'} cm
-            </td>
-        </tr>
-    {/if}
-
-    {if isset($clorderWS)}
-        <tr>
-            <td width="40">
-                <label style="width:150px">{l s='Data collection from' mod='clickline'}: </label>
-            </td>
-            <td>
-                {$clorder['data_collection_from']|escape:'htmlall':'UTF-8'}
-            </td>
-        </tr>
-        <tr>
-            <td width="40">
-                <label style="width:150px">{l s='Hour range from' mod='clickline'}: </label>
-            </td>
-            <td>
-                {if $clorder['hour_range_from'] eq '1'}
-                    09:00 - 11:00
-                {elseif $clorder['hour_range_from'] eq '2'}
-                    11:00 - 13:00
-                {elseif $clorder['hour_range_from'] eq '3'}
-                    13:00 - 15:00
-                {elseif $clorder['hour_range_from'] eq '4'}
-                    15:00 - 17:30
+            </div>
+            <div class="well hidden-print">
+                {if isset($errors[0])}
+                    <span style="color:red">{$errors[0]|escape:'htmlall':'UTF-8'}</span>
                 {/if}
-            </td>
-        </tr>
-        <tr>
-            <td width="40">
-                <label style="width:150px">{l s='Clickline order' mod='clickline'}: </label>
-            </td>
-            <td>
-                {$clorderWS['order']|escape:'htmlall':'UTF-8'}
-            </td>
-        </tr>
-        <tr>
-            <td width="40">
-                <label style="width:150px">{l s='Proforma pdf' mod='clickline'}: </label>
-            </td>
-            <td>
-                <a href="{$clorderWS['proforma_pdf']|escape:'htmlall':'UTF-8'}" target="_blank" title="{l s='Proforma pdf' mod='clickline'}">
-                    {l s='Open' mod='clickline'}
-                </a>
-            </td>
-        </tr>
-        <tr>
-            <td width="40">
-                <label style="width:150px">{l s='Consignment pdf' mod='clickline'}: </label>
-            </td>
-            <td>
-                <a href="{$clorderWS['consignment_pdf']|escape:'htmlall':'UTF-8'}" target="_blank" title="{l s='Consignment pdf' mod='clickline'}">
-                    {l s='Open' mod='clickline'}
-                </a>
-            </td>
-        </tr>
-        <tr>
-            <td width="40">
-                <label style="width:150px">{l s='Ticket' mod='clickline'}: </label>
-            </td>
-            <td>
-                <a href="{$clorderWS['ticket']|escape:'htmlall':'UTF-8'}" target="_blank" title="{l s='Ticket' mod='clickline'}">
-                    {l s='Open' mod='clickline'}
-                </a>
-            </td>
-        </tr>
+                <form action="{$request_uri|escape:'none':'UTF-8'}" method="post" id="clickline-order-form">
+                    <input type="hidden" name="id_cart" id="id_cart" value="{$id_cart|escape:'htmlall':'UTF-8'}" />
+                    <input type="hidden" name="id_shipping_carrier" id="id_shipping_carrier" value="{if isset($clorder)}{$clorder['id_shipping_carrier']|escape:'htmlall':'UTF-8'}{else}{$clcart['id_shipping_carrier']|escape:'htmlall':'UTF-8'}{/if}" />
+                    <input type="hidden" name="id_shipping_service" id="id_shipping_service" value="{if isset($clorder)}{$clorder['id_shipping_service']|escape:'htmlall':'UTF-8'}{else}{$clcart['id_shipping_service']|escape:'htmlall':'UTF-8'}{/if}" />
+                    <input type="hidden" name="shipping_charge" id="shipping_charge" value="{if isset($clorder)}{$clorder['shipping_charge']|escape:'htmlall':'UTF-8'}{else}{$clcart['shipping_charge']|escape:'htmlall':'UTF-8'}{/if}" />
+                    <input type="hidden" name="shipping_code_carrier" id="shipping_code_carrier" value="{if isset($clorder)}{$clorder['shipping_code_carrier']|escape:'htmlall':'UTF-8'}{else}{$clcart['shipping_code_carrier']|escape:'htmlall':'UTF-8'}{/if}" />
+                    <input type="hidden" name="shipping_name_carrier" id="shipping_name_carrier" value="{if isset($clorder)}{$clorder['shipping_name_carrier']|escape:'htmlall':'UTF-8'}{else}{$clcart['shipping_name_carrier']|escape:'htmlall':'UTF-8'}{/if}" />
+                    <input type="hidden" name="shipping_tax" id="shipping_tax" value="{if isset($clorder)}{$clorder['shipping_tax']|escape:'htmlall':'UTF-8'}{else}{$clcart['shipping_tax']|escape:'htmlall':'UTF-8'}{/if}" />
 
-    {else}
+                    <div id="shipping_prices" class="panel form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">{l s='Available balance' mod='clickline'}: </label>
+                            <div class="col-lg-2 control-label input-group">
+                                {$balance|escape:'htmlall':'UTF-8'}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">{l s='Carrier code' mod='clickline'}: </label>
+                            <div class="col-lg-2 control-label input-group">
+                                {$clcart['shipping_code_carrier']|escape:'htmlall':'UTF-8'}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">{l s='Tax' mod='clickline'}: </label>
+                            <div class="col-lg-2 control-label input-group">
+                                {$clcart['shipping_tax']|escape:'htmlall':'UTF-8'} %
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">{l s='Charge without taxes' mod='clickline'}: </label>
+                            <div class="col-lg-2 control-label input-group">
+                        {if isset($clorder)}{$clorder['shipping_charge']|escape:'htmlall':'UTF-8'}{else}{$clcart['shipping_charge']|escape:'htmlall':'UTF-8'}{/if}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-lg-3">{l s='Weight' mod='clickline'}: </label>
+                    <div class="col-lg-2 control-label input-group">
+                        {$weight|escape:'htmlall':'UTF-8'} Kg
+                        <input type="hidden" id="height" name="height" value="{$height|escape:'htmlall':'UTF-8'}" />
+                        <input type="hidden" id="width" name="width" value="{$width|escape:'htmlall':'UTF-8'}" />
+                        <input type="hidden" id="depth" name="depth" value="{$depth|escape:'htmlall':'UTF-8'}" />
+                    </div>
+                </div>
+                {if $products!=false}
+                    <div class="form-group">
+                        <label class="control-label col-lg-3">{l s='Package measures' mod='clickline'}: </label>
+                        <div class="col-lg-2 control-label input-group">
+                            {$height|escape:'htmlall':'UTF-8'} cm&nbsp;x&nbsp;{$width|escape:'htmlall':'UTF-8'} cm&nbsp;x&nbsp;{$depth|escape:'htmlall':'UTF-8'} cm
+                        </div>
+                    </div>
+                {/if}
+                {if isset($clorderWS)}
+                    <div class="form-group">
+                        <label class="control-label col-lg-3">{l s='Data collection from' mod='clickline'}: </label>
+                        <div class="col-lg-2 control-label input-group">
+                            {$clorder['data_collection_from']|escape:'htmlall':'UTF-8'}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-3">{l s='Hour range from' mod='clickline'}: </label>
+                        <div class="col-lg-2 control-label input-group">
+                            {if $clorder['hour_range_from'] eq '1'}
+                                09:00 - 11:00
+                            {elseif $clorder['hour_range_from'] eq '2'}
+                                11:00 - 13:00
+                            {elseif $clorder['hour_range_from'] eq '3'}
+                                13:00 - 15:00
+                            {elseif $clorder['hour_range_from'] eq '4'}
+                                15:00 - 17:30
+                            {/if}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-3">{l s='Clickline order' mod='clickline'}: </label>
+                        <div class="col-lg-2 control-label input-group">
+                            {$clorderWS['order']|escape:'htmlall':'UTF-8'}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-3">{l s='Proforma pdf' mod='clickline'}: </label>
+                        <div class="col-lg-2 control-label input-group">
+                            <a href="{$clorderWS['proforma_pdf']|escape:'htmlall':'UTF-8'}" target="_blank" title="{l s='Proforma pdf' mod='clickline'}">
+                                {l s='Open' mod='clickline'}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-3">{l s='Consignment pdf' mod='clickline'}: </label>
+                        <div class="col-lg-2 control-label input-group">
+                            <a href="{$clorderWS['consignment_pdf']|escape:'htmlall':'UTF-8'}" target="_blank" title="{l s='Consignment pdf' mod='clickline'}">
+                                {l s='Open' mod='clickline'}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-3">{l s='Ticket' mod='clickline'}: </label>
+                        <div class="col-lg-2 control-label input-group">
+                            <a href="{$clorderWS['ticket']|escape:'htmlall':'UTF-8'}" target="_blank" title="{l s='Ticket' mod='clickline'}">
+                                {l s='Open' mod='clickline'}
+                            </a>
+                        </div>
+                    </div>
+                {else}
+                    <div class="form-group">
+                        <label class="control-label col-lg-3">{l s='Data collection from' mod='clickline'}: <span style="color:red;">*</span></label>
+                        <div class="col-lg-2">
+                            <input type="text" id="data_collection_from" name="data_collection_from" value="{$params['data_collection_from']|escape:'htmlall':'UTF-8'}" />
 
-        <tr>
-            <td width="40">
-                <label style="width:150px">{l s='Data collection from' mod='clickline'}: </label>
-            </td>
-            <td>
-                <input type="text" id="data_collection_from" name="data_collection_from" value="{$params['data_collection_from']|escape:'htmlall':'UTF-8'}" />
-                <span style="color:red;">*</span>
-            </td>
-        </tr>
-        <tr>
-            <td width="40">
-                <label style="width:150px">{l s='Hour range from' mod='clickline'}: </label>
-            </td>
-            <td>
-                <select name="hour_range_from">
-                    <option value="1" {if $params['hour_range_from'] eq '1'}selected="selected"{/if}>09:00 - 11:00</option>
-                    <option value="2" {if $params['hour_range_from'] eq '2'}selected="selected"{/if}>11:00 - 13:00</option>
-                    <option value="3" {if $params['hour_range_from'] eq '3'}selected="selected"{/if}>13:00 - 15:00</option>
-                    <option value="4" {if $params['hour_range_from'] eq '4'}selected="selected"{/if}>15:00 - 17:30</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td width="40">
-                <label style="width:150px">{l s='Merchandise description' mod='clickline'}: </label>
-            </td>
-            <td>
-                <input type="text" id="merchandise_desc" name="merchandise_desc" value="{$params['merchandise_desc']|escape:'htmlall':'UTF-8'}" />
-                <span style="color:red;">*</span>
-            </td>
-        </tr>
-        <tr>
-            <td width="100" colspan="2">
-                <label style="width:150px">{l s='Destination Address' mod='clickline'}: </label>{$address1|escape:'htmlall':'UTF-8'} {$address2|escape:'htmlall':'UTF-8'}
-            </td>
-        </tr>
-        <tr>
-            <td width="40">
-                <label style="width:150px">{l s='Destination Street' mod='clickline'}: </label>
-            </td>
-            <td>
-                <input type="text" id="street_to" name="street_to" value="{$params['street_to']|escape:'htmlall':'UTF-8'}" />
-                <span style="color:red;">*</span>
-            </td>
-        </tr>
-        <tr>
-            <td width="40">
-                <label style="width:150px">{l s='Destination road number' mod='clickline'}: </label>
-            </td>
-            <td>
-                <input type="text" id="road_number_to" name="road_number_to" value="{$params['road_number_to']|escape:'htmlall':'UTF-8'}" />
-                <span style="color:red;">*</span>
-            </td>
-        </tr>
-        <tr>
-            <td width="40">
-                <label style="width:150px">{l s='Destination portal' mod='clickline'}: </label>
-            </td>
-            <td>
-                <input type="text" id="portal_to" name="portal_to" value="{$params['portal_to']|escape:'htmlall':'UTF-8'}" />
-            </td>
-        </tr>
-        <tr>
-            <td width="40">
-                <label style="width:150px">{l s='Destination floor' mod='clickline'}: </label>
-            </td>
-            <td>
-                <input type="text" id="floor_to" name="floor_to" value="{$params['floor_to']|escape:'htmlall':'UTF-8'}" />
-            </td>
-        </tr>
-        <tr>
-            <td width="40">
-                <label style="width:150px">{l s='Destination door' mod='clickline'}: </label>
-            </td>
-            <td>
-                <input type="text" id="door_to" name="door_to" value="{$params['door_to']|escape:'htmlall':'UTF-8'}" />
-            </td>
-        </tr>
-    {/if}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-3">{l s='Hour range from' mod='clickline'}: <span style="color:red;">*</span></label>
+                        <div class="col-lg-2">
+                            <select name="hour_range_from">
+                                <option value="1" {if $params['hour_range_from'] eq '1'}selected="selected"{/if}>09:00 - 11:00</option>
+                                <option value="2" {if $params['hour_range_from'] eq '2'}selected="selected"{/if}>11:00 - 13:00</option>
+                                <option value="3" {if $params['hour_range_from'] eq '3'}selected="selected"{/if}>13:00 - 15:00</option>
+                                <option value="4" {if $params['hour_range_from'] eq '4'}selected="selected"{/if}>15:00 - 17:30</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-3">{l s='Merchandise description' mod='clickline'}: <span style="color:red;">*</span></label>
+                        <div class="col-lg-2">
+                            <input type="text" id="merchandise_desc" name="merchandise_desc" value="{$params['merchandise_desc']|escape:'htmlall':'UTF-8'}" />
 
-</table>
-</br>
-
-{if isset($clorderWS) == false}
-    <div style="padding-right: 10px;text-align: right;">
-        <input type="submit" value="{l s='Put order' mod='clickline'}" name="submitClicklineInfo" id="submitClicklineInfo" class="button" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-3">{l s='Destination Address' mod='clickline'}: <span style="color:red;">*</span></label>
+                        <div class="col-lg-2 control-label">
+                            {$address1|escape:'htmlall':'UTF-8'} {$address2|escape:'htmlall':'UTF-8'}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-3">{l s='Destination Street' mod='clickline'}: <span style="color:red;">*</span></label>
+                        <div class="col-lg-2">
+                            <input type="text" id="street_to" name="street_to" value="{$params['street_to']|escape:'htmlall':'UTF-8'}" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-3">{l s='Destination road number' mod='clickline'}: <span style="color:red;">*</span></label>
+                        <div class="col-lg-2">
+                            <input type="text" id="road_number_to" name="road_number_to" value="{$params['road_number_to']|escape:'htmlall':'UTF-8'}" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-3">{l s='Destination portal' mod='clickline'}: </label>
+                        <div class="col-lg-2">
+                            <input type="text" id="portal_to" name="portal_to" value="{$params['portal_to']|escape:'htmlall':'UTF-8'}" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-3">{l s='Destination floor' mod='clickline'}: </label>
+                        <div class="col-lg-2">
+                            <input type="text" id="floor_to" name="floor_to" value="{$params['floor_to']|escape:'htmlall':'UTF-8'}" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-3">{l s='Destination door' mod='clickline'}: </label>
+                        <div class="col-lg-2">
+                            <input type="text" id="door_to" name="door_to" value="{$params['door_to']|escape:'htmlall':'UTF-8'}" />
+                        </div>
+                    </div>
+                {/if}
+                {if isset($clorderWS) == false}
+                    <div style="padding-right: 10px;text-align: right;">
+                        <input type="submit" value="{l s='Put order' mod='clickline'}" name="submitClicklineInfo" id="submitClicklineInfo" class="button" />
+                    </div>
+                    <div>{l s='Required fields' mod='clickline'}<span style="color:red">*</span></div>
+                {/if}
+                <button class="button" onclick="$('#clickline-order-form').slideDown(); $(this).slideUp();">{l s='Put order' mod='clickline'}</button>
+            </div>
+        </form>
     </div>
-    <div>{l s='Required fields' mod='clickline'}<span style="color:red">*</span></div>
-{/if}
-</form>
-<button class="button" onclick="$('#clickline-order-form').slideDown();$(this).slideUp();">{l s='Put order' mod='clickline'}</button>
-</fieldset>
+</div>
+</div>
+</div>
