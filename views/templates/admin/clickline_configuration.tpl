@@ -24,10 +24,22 @@
 *}
 <div id="clickline-settings">
     <div class="clickline-content">
-        <div class="clickline-left">
+        <div class="col-xs-9">
             <img src="{$logo_src|escape:'htmlall':'UTF-8'}img/logo.png" alt="clickline.com">
+            <div>
+                <strong>{l s='Clickline description' mod='clickline'}</strong><br>
+                {l s='Clickline description2' mod='clickline'}<br>
+                {l s='Clickline description3' mod='clickline'}<br>
+                {l s='Clickline description4' mod='clickline'}<br>
+                <ul>
+                    <li>{l s='Clickline description5' mod='clickline'}</li>
+                    <li>{l s='Clickline description6' mod='clickline'}</li>
+                    <li>{l s='Clickline description7' mod='clickline'}</li>
+                </ul>
+                 {l s='Clickline description8' mod='clickline'}
+            </div>
         </div>
-        <div class="clickline-right">
+        <div class="clickline-right col-xs-3 pull-right">
             <ul>
                 <li>
                     <span class='heads'>{l s='Comparador de envíos' mod='clickline'}</span><br>
@@ -37,19 +49,19 @@
                     <span class='heads'>{l s='Envíos nacionales e internacionales' mod='clickline'}</span><br>
                     <span class ='subs'>{l s='Realice envíos a cualquier parte del mundo' mod='clickline'}</span>
                 </li>
+                <li>
+                    <a href="https://www.clickline.com/customer/account/create/" target="_blank">
+                        <span class='heads'>
+                            {l s='Create an account' mod='clickline'}
+                        </span>
+                    </a><br>
+                    <span class ='subs'>{l s='Required register User' mod='clickline'}</span>
+                </li>
             </ul>
         </div>
     </div>
     <div class="clear clearfix"></div>
     <div id="clickline-menu" class="row {if $ps_16 eq false}not_{/if}ps_16">
-        <div class="clickline-menu-option col-xs-3" id="account-option">
-            <a href="https://www.clickline.com/customer/account/create/" target="_blank">
-                <img class="img-responsive" src="{$logo_src|escape:'htmlall':'UTF-8'}img/settings_options/create_account.png" alt="{l s='Create an account' mod='clickline'}"/>
-                <div>
-                    <h3>{l s='Create an account' mod='clickline'}</h3>
-                </div>
-            </a>
-        </div>
         <div class="clickline-menu-option col-xs-3" id="settings-option">
             <img class="img-responsive" src="{$logo_src|escape:'htmlall':'UTF-8'}img/settings_options/settings.png" alt="{l s='Settings' mod='clickline'}"/>
             <div>

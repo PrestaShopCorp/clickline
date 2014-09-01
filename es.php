@@ -44,6 +44,15 @@ $_MODULE['<{clickline}prestashop>clickline_configuration_2fdfd506efea08144c0794c
 $_MODULE['<{clickline}prestashop>clickline_configuration_f4f70727dc34561dfde1a3c529b6205c'] = 'Configuración';
 $_MODULE['<{clickline}prestashop>clickline_configuration_5b6cf869265c13af8566f192b4ab3d2a'] = 'Documentación';
 $_MODULE['<{clickline}prestashop>clickline_configuration_db5eb84117d06047c97c9a0191b5fffe'] = 'Soporte';
+$_MODULE['<{clickline}prestashop>clickline_configuration_0fe272e7218a611a68be78b5506803a8'] = 'Es necesario tener cuenta en clickline.com';
+$_MODULE['<{clickline}prestashop>clickline_configuration_4343ebe1aae410bf19c89de1f5070218'] = 'Olvidate de gestionar diferentes cuentas lickline es un comparador de envíos integrado en prestashop.';
+$_MODULE['<{clickline}prestashop>clickline_configuration_9ecb53ac2891da8725a3d869f7ffba00'] = 'Este módulo le permite a sus clientes elegir el transportista que desea que realice el transporte y a usted, le permite realizar los envios con total tranquilidad.';
+$_MODULE['<{clickline}prestashop>clickline_configuration_68a3a5295917c00b26beab464e046513'] = 'Para que el módulo funcione correctamente es necesario crear una cuenta en clickline, como verá, para realizar los envíos es necesario tambien acceder a la pagina web de www.clickline.com y realizar una recarga de bolsa.';
+$_MODULE['<{clickline}prestashop>clickline_configuration_95c4f7d858d523454dd0ecdb77e6b0f3'] = 'Como cliente de Clickline además ganará un 5 porciento en cada uno de sus envíos y también:';
+$_MODULE['<{clickline}prestashop>clickline_configuration_aad961764b7dd5dc103e5130eacd34fa'] = 'Agilizará el proceso de sus envíos';
+$_MODULE['<{clickline}prestashop>clickline_configuration_00dd4aaea217f1ecbc68c7c8fab7e7dc'] = 'Comprobar el estado de sus pedidos';
+$_MODULE['<{clickline}prestashop>clickline_configuration_2ea6adc442bf4aafda6ef1bd3e008277'] = 'Recargar la bolsa prepago';
+$_MODULE['<{clickline}prestashop>clickline_configuration_b9704045634fea6ac9333e7e892ca78c'] = 'Si tiene alguna duda por favor contacta con nosotros enviando un email a comunicados@clickline.com o bien llamando de lunes a viernes al 902 10 10 80 de 9 a 18 horas.';
 $_MODULE['<{clickline}prestashop>clickline_carrier_d7e64c7d2d71a2076fb7c433dd6f2197'] = 'Seleccione un transportista de Clickline';
 $_MODULE['<{clickline}prestashop>clickline_carrier_5da618e8e4b89c66fe86e32cdafde142'] = 'Desde';
 $_MODULE['<{clickline}prestashop>clickline_carrier_e12167aa0a7698e6ebc92b4ce3909b53'] = 'Hasta';
@@ -71,3 +80,4 @@ $_MODULE['<{clickline}prestashop>admin_order_c53d8c64df15f031c604fd40d72d6f37'] 
 $_MODULE['<{clickline}prestashop>admin_order_6bdedd4ad681ff140fcf17ec1cf51a9c'] = 'Puerta';
 $_MODULE['<{clickline}prestashop>admin_order_95516566296794980a8a752f8cd31f32'] = 'Solicitar pedido';
 $_MODULE['<{clickline}prestashop>admin_order_70397c4b252a5168c5ec003931cea215'] = 'Campos obligatorios';
+

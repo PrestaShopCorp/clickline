@@ -1,10 +1,10 @@
 #clickline-settings .clickline-content { display: block; }
 #clickline-settings .clickline-left { float: left; margin: 20px; }
-#clickline-settings .clickline-right { float: right; margin: 20px; }
+
 #clickline-settings .clickline-right li { background: url('../img/menu_arrow.png') no-repeat scroll left center; height: 20px; list-style: none outside none; margin: 0 0 30px 10px; min-height: 21px; padding: 2px 0 0 30px; text-decoration: none; }
 #clickline-settings .clickline-right span.heads { font-weight: bold; }
 #clickline-settings .clickline-right span.subs { font-size: 12px; }
-#clickline-settings #clickline-configuration {display:none}
+
 #clickline-settings .clickline-menu-option {cursor:pointer;padding: 20px; text-align: center;}
 /*1.5 and 1.4 bootstrap simulator*/
 #clickline-settings div.not_ps_16 .clickline-menu-option {float:left;width:25%;-moz-box-sizing: border-box;box-sizing:border-box;}
