@@ -135,6 +135,8 @@
         
         $(document).ready(function()
     {ldelim}
+    {$clickline_carrier};
+    {$id_carrier};
     {if $carrier_sel == ''}
 
         {if $id_carrier == $clickline_carrier}
@@ -149,7 +151,9 @@
         {/if}
     {/if}
     {if $id_carrier != $clickline_carrier}
-        $('#carrierTableCL').hide();
+        clicklineId = $('#carrierTableCL').parent().attr('id').split('_')[$('#carrierTableCL').parent().attr('id').split('_').length-1];
+        if(!$('input[name^="delivery_option['+ clicklineId +']"]').is(':checked'))
+            $('#carrierTableCL').hide();
     {/if}
         change_action_form();
     {rdelim});
