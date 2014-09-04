@@ -58,7 +58,7 @@ class ClickLineApi
 			'http' => array(
 				'method' => 'POST',
 				'content' => $xml,
-				'timeout' => 5,
+				'timeout' => 30,
 				'header' => $this->headers
 			)
 		);
