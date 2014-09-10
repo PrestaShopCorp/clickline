@@ -3,7 +3,7 @@
 global $_MODULE;
 $_MODULE = array();
 $_MODULE['<{clickline}prestashop>clickline_configuration_2fdfd506efea08144c0794c32ca8250a'] = 'Create an account';
-$_MODULE['<{clickline}prestashop>clickline_configuration_f4f70727dc34561dfde1a3c529b6205c'] = 'Configuration';
+$_MODULE['<{clickline}prestashop>clickline_configuration_f4f70727dc34561dfde1a3c529b6205c'] = 'Settings';
 $_MODULE['<{clickline}prestashop>clickline_configuration_5b6cf869265c13af8566f192b4ab3d2a'] = 'Documentation';
 $_MODULE['<{clickline}prestashop>clickline_configuration_db5eb84117d06047c97c9a0191b5fffe'] = 'Support';
 $_MODULE['<{clickline}prestashop>clickline_configuration_0fe272e7218a611a68be78b5506803a8'] = 'You must have an account on clickline.com';
