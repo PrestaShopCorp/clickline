@@ -27,7 +27,7 @@
         <div class="col-xs-9">
             <img src="{$logo_src|escape:'htmlall':'UTF-8'}img/logo.png" alt="clickline.com">
             <div>
-                <strong>{l s='Clickline description' mod='clickline'}</strong><br>
+                <strong>{l s='Quit managing different accounts, Clickline is a shipping comparator integrated in PrestaShop.' mod='clickline'}</strong><br>
                 {l s='Clickline description2' mod='clickline'}<br>
                 {l s='Clickline description3' mod='clickline'}<br>
                 {l s='Clickline description4' mod='clickline'}<br>
@@ -62,13 +62,13 @@
     </div>
     <div class="clear clearfix"></div>
     <div id="clickline-menu" class="row {if $ps_16 eq false}not_{/if}ps_16">
-        <div class="clickline-menu-option col-xs-3" id="settings-option">
+        <!--<div class="clickline-menu-option col-xs-3" id="settings-option">
             <img class="img-responsive" src="{$logo_src|escape:'htmlall':'UTF-8'}img/settings_options/settings.png" alt="{l s='Settings' mod='clickline'}"/>
             <div>
                 <h3>{l s='Settings' mod='clickline'}</h3>
             </div>
         </div>
-        <!--<div class="clickline-menu-option col-xs-3" id="documentation-option">
+        <div class="clickline-menu-option col-xs-3" id="documentation-option">
             <a href="#">
                 <img class="img-responsive" src="{$logo_src|escape:'htmlall':'UTF-8'}img/settings_options/documentation.png" alt="{l s='Documentation' mod='clickline'}"/>
                 <div>
