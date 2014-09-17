@@ -28,15 +28,15 @@
             <img src="{$logo_src|escape:'htmlall':'UTF-8'}img/logo.png" alt="clickline.com">
             <div>
                 <strong>{l s='Quit managing different accounts, Clickline is a shipping comparator integrated in PrestaShop.' mod='clickline'}</strong><br>
-                {l s='Clickline description2' mod='clickline'}<br>
-                {l s='Clickline description3' mod='clickline'}<br>
-                {l s='Clickline description4' mod='clickline'}<br>
+                {l s='This module allows your customers to choose the carrier they want, and let you manage your shipments in peace.' mod='clickline'}<br>
+                {l s='For the module to work correctly you must create an account on Clickline, when shipping is also required to access the web a www.clickline.com to fund your account.' mod='clickline'}<br>
+                {l s='As a client of Clickline also save up 5 percent in each of their shipments and:' mod='clickline'}<br>
                 <ul>
-                    <li>{l s='Clickline description5' mod='clickline'}</li>
-                    <li>{l s='Clickline description6' mod='clickline'}</li>
-                    <li>{l s='Clickline description7' mod='clickline'}</li>
+                    <li>{l s='Expedite the shipment process' mod='clickline'}</li>
+                    <li>{l s='Check your orders status' mod='clickline'}</li>
+                    <li>{l s='Fund your prepaid account' mod='clickline'}</li>
                 </ul>
-                 {l s='Clickline description8' mod='clickline'}
+                 {l s='If you have any questions please contact us by email at comunicados@clickline.com or calling us on Monday through Friday October +34 902 10 80 902 from 9 am to 6 pm' mod='clickline'}
             </div>
         </div>
         <div class="clickline-right col-xs-3 pull-right">
