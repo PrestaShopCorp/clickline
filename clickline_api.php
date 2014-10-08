@@ -381,9 +381,9 @@ class ClickLineApi
 
 		$document = simplexml_load_string($this->sendXml($xml));
 		// Get results
-		return array('order' => $this->validateAndGetXpath($document, '//order'),
-			'proforma_pdf' => $this->validateAndGetXpath($document, '//proforma_pdf'),
-			'consignment_pdf' => $this->validateAndGetXpath($document, '//consignment_pdf'),
+		return array('order' => $document->status->order,
+			'proforma_pdf' => $document->status->proforma_pdf,
+			'consignment_pdf' => $document->status->consignment_pdf,
 			'ticket' => $this->validateAndGetXpath($document, '//ticket'));
 	}
 

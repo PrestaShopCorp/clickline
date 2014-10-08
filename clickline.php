@@ -985,14 +985,14 @@ class ClickLine extends CarrierModule
 				$clorder->config = $this->getClorderConfigArray($transporter_id, $service_id, $charge, $product_code, $service_name, $tax);
 
 // Cast SimpleXMLElement to array
-				$array = (array) $put_order['order'][0];
-				$put_order['order'] = $array[0];
-				$array = (array) $put_order['proforma_pdf'][0];
-				$put_order['proforma_pdf'] = $array[0];
-				$array = (array) $put_order['consignment_pdf'][0];
-				$put_order['consignment_pdf'] = $array[0];
-				$array = (array) $put_order['ticket'][0];
-				$put_order['ticket'] = $array[0];
+				$arrayOrder = (array) $put_order['order'];
+				$put_order['order'] = $arrayOrder[0];
+				$arrayProforma = (array) $put_order['proforma_pdf'];
+				$put_order['proforma_pdf'] = $arrayProforma[0];
+				$arrayConsigment = (array) $put_order['consignment_pdf'];
+				$put_order['consignment_pdf'] = $arrayConsigment[0];
+				$arrayTickets = (array) $put_order['ticket'][0];
+				$put_order['ticket'] = $arrayTickets[0];
 
 				$clorder->config_ws = array('order' => $put_order['order'],
 					'proforma_pdf' => $put_order['proforma_pdf'],
