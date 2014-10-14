@@ -52,9 +52,9 @@ class CLCartClass
 			{
 				$this->exist = true;
 				if (isset($cart['config']))
-					$this->config = array_merge(self::getDefaultConfig(), unserialize($cart['config']));
+					$this->config = array_merge(self::getDefaultConfig(), unjson_encode($cart['config']));
 				if (isset($cart['configWS']))
-					$this->config_ws = unserialize($cart['configWS']);
+					$this->config_ws = unjson_encode($cart['configWS']);
 			}
 		}
 	}
@@ -79,8 +79,8 @@ class CLCartClass
 	{
 		return Db::getInstance()->autoExecute(_DB_PREFIX_.'clickline_cart', array(
 					'id_cart' => (int)$this->id_cart,
-					'config' => pSQL(serialize($this->config)),
-					'configWS' => pSQL(serialize($this->config_ws)),
+					'config' => pSQL(json_encode($this->config)),
+					'configWS' => pSQL(json_encode($this->config_ws)),
 						), 'INSERT');
 	}
 
@@ -93,8 +93,8 @@ class CLCartClass
 	{
 		Db::getInstance()->autoExecute(_DB_PREFIX_.'clickline_cart', array(
 			'id_cart' => (int)$this->id_cart,
-			'config' => pSQL(serialize($this->config)),
-			'configWS' => pSQL(serialize($this->config_ws)),
+			'config' => pSQL(json_encode($this->config)),
+			'configWS' => pSQL(json_encode($this->config_ws)),
 				), 'UPDATE', '`id_cart` = '.(int)$this->id_cart);
 	}
 

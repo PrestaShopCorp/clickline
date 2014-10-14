@@ -766,7 +766,7 @@ class ClickLine extends CarrierModule
 
 // Get PC - Country from and to for Header
 				$usuario_direccion_id = $cart->id_address_delivery;
-				$query = 'SELECT * FROM '._DB_PREFIX_.'address where id_address = "'.$usuario_direccion_id.'"';
+				$query = 'SELECT * FROM '._DB_PREFIX_.'address where id_address = "'.(int)$usuario_direccion_id.'"';
 				$usuario_datos = Db::getInstance()->ExecuteS($query);
 				$country_to = CountryCore::getNameById($this->_lang, $usuario_datos[0]['id_country']);
 
