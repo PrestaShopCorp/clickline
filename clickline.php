@@ -585,6 +585,8 @@ class ClickLine extends CarrierModule
 			$clcart = new CLCartClass($order->id_cart);
 		else
 			return '';
+			
+		Configuration::updateValue('CLICKLINE_CONFIGURATION_OK', true);
 
 		$this->postProcess();
 // Consult to WS the Clickline's account available balance
