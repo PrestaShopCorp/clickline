@@ -38,9 +38,9 @@ class CLOrderClass
 			$this->id_order = (int)$id_order;
 			$order = self::getClicklineOrder((int)$id_order);
 			if (isset($order['config']))
-				$this->config = json_decode($order['config']);
+				$this->config = Tools::jsonDecode($order['config']);
 			if (isset($order['configWS']))
-				$this->config_ws = json_decode($order['configWS']);
+				$this->config_ws = Tools::jsonDecode($order['configWS']);
 		}
 	}
 
@@ -49,8 +49,8 @@ class CLOrderClass
 		return Db::getInstance()->autoExecute(
 			_DB_PREFIX_.'clickline_order', array(
 			'id_order' => (int)$this->id_order,
-			'config' => pSQL(json_encode($this->config)),
-			'configWS' => pSQL(json_encode($this->config_ws)),
+			'config' => pSQL(Tools::jsonEncode($this->config)),
+			'configWS' => pSQL(Tools::jsonEncode($this->config_ws)),
 		), 'INSERT');
 	}
 
@@ -63,8 +63,8 @@ class CLOrderClass
 	{
 		Db::getInstance()->autoExecute(_DB_PREFIX_.'clickline_order', array(
 			'id_order' => (int)$this->id_order,
-			'config' => pSQL(json_encode($this->config)),
-			'configWS' => pSQL(json_encode($this->config_ws)),
+			'config' => pSQL(Tools::jsonEncode($this->config)),
+			'configWS' => pSQL(Tools::jsonEncode($this->config_ws)),
 		), 'UPDATE', '`id_order` = '.(int)$this->id_order);
 	}
 
