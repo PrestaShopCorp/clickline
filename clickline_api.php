@@ -41,7 +41,7 @@ class ClickLineApi
 		if (!defined('PATH'))
 			define('PATH', 'includes/api.php');
 
-		$this->url = 'http://'.HOST.'/'.PATH;
+		$this->url = 'http://'.HOST.'/'.PATH.'?v=3';
 		$this->headers = 'HTTP_AUTH_LOGIN: '.Configuration::get('CLICKLINE_ACCOUNT')."\r\n".
 				'HTTP_AUTH_PASSWD: '.Configuration::get('CLICKLINE_PASSWORD')."\r\n".
 				'Content-Type: text/xml';
