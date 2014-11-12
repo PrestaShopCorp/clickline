@@ -52,9 +52,9 @@ class CLCartClass
 			{
 				$this->exist = true;
 				if (isset($cart['config']))
-					$this->config = array_merge(self::getDefaultConfig(), Tools::jsonDecode($cart['config']));
+					$this->config = array_merge(self::getDefaultConfig(), Tools::jsonDecode($cart['config'], true));
 				if (isset($cart['configWS']))
-					$this->config_ws = Tools::jsonDecode($cart['configWS']);
+					$this->config_ws = Tools::jsonDecode($cart['configWS'], true);
 			}
 		}
 	}
