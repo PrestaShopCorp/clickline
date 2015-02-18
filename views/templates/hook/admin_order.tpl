@@ -114,10 +114,8 @@
                                 13:00 - 15:00
                             {elseif $clorder['hour_range_from'] eq '4'}
                                 15:00 - 17:30
-                            {/if}
                             {elseif $clorder['hour_range_from'] eq '5'}
                                 9:00 - 14:00
-                            {/if}
                             {elseif $clorder['hour_range_from'] eq '6'}
                                 14:00 - 18:00
                             {/if}
