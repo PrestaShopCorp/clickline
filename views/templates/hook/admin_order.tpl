@@ -72,9 +72,20 @@
                     <label class="control-label col-lg-3">{l s='Weight' mod='clickline'}: </label>
                     <div class="col-lg-2 control-label input-group">
                         {$weight|escape:'htmlall':'UTF-8'} Kg
-                        <input type="hidden" id="height" name="height" value="{$height|escape:'htmlall':'UTF-8'}" />
-                        <input type="hidden" id="width" name="width" value="{$width|escape:'htmlall':'UTF-8'}" />
-                        <input type="hidden" id="depth" name="depth" value="{$depth|escape:'htmlall':'UTF-8'}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-lg-3">{l s='Height' mod='clickline'}: <span style="color:red;">*</span></label>
+                    <div class="col-lg-2 control-label input-group">
+                        <input type="text" id="height" name="height" value="{$height|escape:'htmlall':'UTF-8'}" />
+                    </div>
+                    <label class="control-label col-lg-3">{l s='Width' mod='clickline'}: <span style="color:red;">*</span></label>
+                    <div class="col-lg-2 control-label input-group">
+                        <input type="text" id="width" name="width" value="{$width|escape:'htmlall':'UTF-8'}" />
+                    </div>
+                    <label class="control-label col-lg-3">{l s='Depth' mod='clickline'}: <span style="color:red;">*</span></label>
+                    <div class="col-lg-2 control-label input-group">
+                        <input type="text" id="depth" name="depth" value="{$depth|escape:'htmlall':'UTF-8'}" />
                     </div>
                 </div>
                 {if $products!=false}
@@ -103,6 +114,10 @@
                                 13:00 - 15:00
                             {elseif $clorder['hour_range_from'] eq '4'}
                                 15:00 - 17:30
+                            {elseif $clorder['hour_range_from'] eq '5'}
+                                9:00 - 14:00
+                            {elseif $clorder['hour_range_from'] eq '6'}
+                                14:00 - 18:00
                             {/if}
                         </div>
                     </div>
@@ -148,10 +163,8 @@
                         <label class="control-label col-lg-3">{l s='Hour range from' mod='clickline'}: <span style="color:red;">*</span></label>
                         <div class="col-lg-2">
                             <select name="hour_range_from">
-                                <option value="1" {if $params['hour_range_from'] eq '1'}selected="selected"{/if}>09:00 - 11:00</option>
-                                <option value="2" {if $params['hour_range_from'] eq '2'}selected="selected"{/if}>11:00 - 13:00</option>
-                                <option value="3" {if $params['hour_range_from'] eq '3'}selected="selected"{/if}>13:00 - 15:00</option>
-                                <option value="4" {if $params['hour_range_from'] eq '4'}selected="selected"{/if}>15:00 - 17:30</option>
+                                <option value="5" {if $params['hour_range_from'] eq '5'}selected="selected"{/if}>9:00 - 14:00</option>
+                                <option value="6" {if $params['hour_range_from'] eq '6'}selected="selected"{/if}>14:00 - 18:00</option>
                             </select>
                         </div>
                     </div>

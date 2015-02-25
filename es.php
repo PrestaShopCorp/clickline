@@ -80,4 +80,7 @@ $_MODULE['<{clickline}prestashop>admin_order_c53d8c64df15f031c604fd40d72d6f37'] 
 $_MODULE['<{clickline}prestashop>admin_order_6bdedd4ad681ff140fcf17ec1cf51a9c'] = 'Puerta';
 $_MODULE['<{clickline}prestashop>admin_order_95516566296794980a8a752f8cd31f32'] = 'Solicitar pedido';
 $_MODULE['<{clickline}prestashop>admin_order_70397c4b252a5168c5ec003931cea215'] = 'Campos obligatorios';
+$_MODULE['<{clickline}prestashop>admin_order_eec6c4bdbd339edf8cbea68becb85244'] = 'Alto';
+$_MODULE['<{clickline}prestashop>admin_order_32954654ac8fe66a1d09be19001de2d4'] = 'Ancho';
+$_MODULE['<{clickline}prestashop>admin_order_675056ad1441b6375b2c5abd48c27ef1'] = 'Largo';
 
