@@ -14,4 +14,4 @@ $_MODULE['<{clickline}prestashop>clickline_configuration_36120256fb9ffa6a1a1da43
 $_MODULE['<{clickline}prestashop>clickline_configuration_fba64e5df3bb081bb2698276a76793cb'] = 'Expedite the shipment process';
 $_MODULE['<{clickline}prestashop>clickline_configuration_db88d7d4a68bdb7ecc40dd348f2e5d6c'] = 'Check your orders status';
 $_MODULE['<{clickline}prestashop>clickline_configuration_1db1ad8de293eae9b84eed367059066e'] = 'Fund your prepaid account';
-$_MODULE['<{clickline}prestashop>clickline_configuration_67a5e0286d4ed523fced2433990f37d5'] = 'If you have any questions please contact us by email at comunicados@clickline.com or calling us on Monday through Friday October +34 902 10 80 902 from 9 am to 6 pm';
+$_MODULE['<{clickline}prestashop>clickline_configuration_67a5e0286d4ed523fced2433990f37d5'] = 'If you have any questions please contact us by email at comunicados@clickline.com or calling us on Monday through Friday October +34 902 10 10 80 from 9 am to 6 pm';
