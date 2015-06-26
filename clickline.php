@@ -54,7 +54,7 @@ class ClickLine extends CarrierModule
 	{
 		$this->name = 'clickline';
 		$this->tab = 'shipping_logistics';
-		$this->version = '1.3.7';
+		$this->version = '1.3.8';
 		$this->author = 'alabazweb.com';
 		$this->bootstrap = true;
 
